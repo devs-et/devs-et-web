@@ -1,0 +1,32 @@
+<div class="wrap">
+  <h1>Channels</h1>
+
+  <button 
+    mat-raised-button
+    color="primary"
+    [routerLink]="['/', 'channels', 'create']">
+    New Channel
+  </button>
+
+  <div class="content">
+    <div *ngIf="channels$ | async as channels">
+      <mat-card 
+        mat-ripple
+        [routerLink]="['/', paths.channels.view, channel.id]"
+        *ngFor="let channel of channels" 
+        class="channel-card">
+
+        <div mat-card-avatar class="channel-icon"></div>
+
+        <div class="card-content">
+          <mat-card-title>
+            {{channel.name}}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{channel.description}}
+          </mat-card-subtitle>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

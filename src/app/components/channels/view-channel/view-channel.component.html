@@ -1,0 +1,18 @@
+<div class="wrap" *ngIf="channel$ | async as channel">
+  <div>
+    <div>
+      <h1 class="channel-title">{{channel.name}}</h1>
+      <p>
+        {{channel.description}}
+      </p>
+      <div>
+        <button mat-stroked-button color="primary">Join</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="main-content">a</div>
+    <div class="side-bar">b</div>
+  </div>
+</div>

@@ -1,1 +1,232 @@
-/* You can add global styles to this file, and also import other style files */
+@import './variables.scss';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import 'https://fonts.googleapis.com/css?family=Material+Icons';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+$default-font: 'Eina';
+
+@font-face {
+  font-family: $default-font;
+  src: url('./assets/fonts/eina-01-regular.woff2');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: $default-font;
+  src: url('./assets/fonts/eina-01-semibold.woff2');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: $default-font;
+  src: url('./assets/fonts/eina-01-bold.woff2');
+  font-weight: 900;
+}
+     
+$fontConfig: (
+  display-4: mat-typography-level(112px, 112px, 300, $default-font, -0.0134em),
+  display-3: mat-typography-level(56px, 56px, 400, $default-font, -0.0089em),
+  display-2: mat-typography-level(45px, 48px, 400, $default-font, 0.0000em),
+  display-1: mat-typography-level(34px, 40px, 400, $default-font, 0.0074em),
+  headline: mat-typography-level(24px, 2.8rem, 400, $default-font, 0.0000em),
+  title: mat-typography-level(20px, 32px, 500, $default-font, 0.0075em),
+  subheading-2: mat-typography-level(16px, 28px, 400, $default-font, 0.0094em),
+  subheading-1: mat-typography-level(15px, 24px, 500, $default-font, 0.0067em),
+  body-2: mat-typography-level(14px, 24px, 500, $default-font, 0.0179em),
+  body-1: mat-typography-level(14px, 20px, 400, $default-font, 0.0179em),
+  button: mat-typography-level(14px, 14px, 500, $default-font, 0.0893em),
+  caption: mat-typography-level(12px, 20px, 400, $default-font, 0.0333em),
+  input: mat-typography-level(inherit, 1.125, 400, $default-font, 1.5px)
+);
+
+$mat-dark-theme-foreground: (
+  base:              $light-text,
+  divider:           $light-dividers,
+  dividers:          $light-dividers,
+  disabled:          $light-disabled-text,
+  disabled-button:   rgba($light-text, 0.3),
+  disabled-text:     $light-disabled-text,
+  elevation:         black,
+  hint-text:         $light-disabled-text,
+  secondary-text:    $light-accent-text,
+  accent-text:       $light-accent-text,
+  icon:              $light-text,
+  icons:             $light-text,
+  text:              $light-text,
+  slider-min:        $light-text,
+  slider-off:        rgba($light-text, 0.3),
+  slider-off-active: rgba($light-text, 0.3),
+);
+
+$mat-dark-theme-background: (
+  background:               $dark-background,
+  status-bar:               $dark-bg-lighter-20,
+  app-bar:                  $dark-bg-lighter-5,
+  hover:                    $light-bg-alpha-4,
+  card:                     $dark-bg-lighter-5,
+  dialog:                   $dark-bg-lighter-5,
+  tooltip:                  $dark-bg-lighter-20,
+  disabled-button:          $light-bg-alpha-12,
+  raised-button:            $dark-bg-lighter-5,
+  focused-button:           $light-focused,
+  selected-button:          $dark-bg-lighter-20,
+  selected-disabled-button: $dark-bg-lighter-30,
+  disabled-button-toggle:   $dark-bg-lighter-10,
+  unselected-chip:          $dark-bg-lighter-20,
+  disabled-list-option:     $dark-bg-lighter-10,
+);
+
+@include mat-core($fontConfig);
+
+body {
+  --primary-color: $primary;
+  --primary-lighter-color: #b7bdc4;
+  --primary-darker-color: #081624;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}
+
+$mat-primary: (
+  main: $primary,
+  lighter: $light,
+  darker: darken($primary, 25%),
+  200: $primary, 
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+
+$theme-primary: mat-palette($mat-primary, main, lighter, darker);
+
+body {
+  --accent-color: $accent;
+  --accent-lighter-color: lighten($accent, 80%);
+  --accent-darker-color: darken($accent, 20%);
+  --text-accent-color: #{$light-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
+}
+
+$mat-accent: (
+  main: $accent,
+  lighter: #bcc3ca,
+  darker: #122234,
+  200: #1f364d, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+
+$theme-accent: mat-palette($mat-accent, main, lighter, darker);
+
+body {
+  --warn-color: $warn;
+  --warn-lighter-color: lighten($warn, 30%);
+  --warn-darker-color: darken($warn, 5%);
+  --text-warn-color: #{$light-primary-text};
+  --text-warn-lighter-color: #{$dark-primary-text};
+  --text-warn-darker-color: #{$light-primary-text};
+}
+
+$mat-warn: (
+  main: $warn,
+  lighter: lighten($warn, 30%),
+  darker: darken($warn, 5%),
+  200: $warn, // For slide toggle,
+  contrast : (
+    main: $light-primary-text,
+    lighter: $dark-primary-text,
+    darker: $light-primary-text,
+  )
+);
+
+$theme-warn: mat-palette($mat-warn, main, lighter, darker);;
+
+$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+
+@include angular-material-theme($theme);
+
+.mat-raised-button, .mat-stroked-button, .mat-flat-button {
+  padding: 0 1.15em;
+  margin: 0 .65em;
+  min-width: 3em;
+  line-height: 36.4px
+}
+
+.mat-standard-chip {
+  padding: .5em .85em;
+  min-height: 2.5em;
+}
+
+.material-icons {
+  font-size: 24px;
+  font-family: 'Material Icons', 'Material Icons';  
+  .mat-badge-content {
+    font-family: $default-font;
+  }
+}
+
+html, 
+body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: $default-font, "Helvetica Neue", sans-serif; 
+  background-color: $dark;
+  color: $light;
+}
+
+.mat-form-field-flex {
+  padding: 1rem 1.5rem;
+  background: $dark2;
+}
+
+.mat-flat-button {
+  background-color: $dark2;
+}
+
+* {
+  &:focus {
+    outline: none;
+  }
+}
+
+.container.loader {
+  .load {
+    $gradient: linear-gradient(45deg, 
+        $dark2, transparent, $dark2, transparent, $dark2, $dark2, transparent, $dark2, transparent, $dark2
+      );
+
+    color: transparentize($light-text, .9);
+    transition: .5s;
+    background: $dark2;
+    background: $gradient;
+    background-size: 400vw 400vw;
+    animation: LoaderAnimation 12s ease-in-out infinite;
+    border-color: transparent;
+    opacity: .5;
+    pointer-events: none;
+
+    @keyframes LoaderAnimation {
+      0%{background-position:100% 50%}
+      50%{background-position:0% 50%}
+      100%{background-position:100% 50%}
+    }
+
+    &::before, 
+    &::after {
+      content: '.';
+      color: transparent;
+    }
+  }
+}

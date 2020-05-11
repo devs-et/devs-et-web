@@ -1,0 +1,11 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+
+  .main-container {
+    min-height: 10rem;
+  }
+
+  .side-container {
+  }
+}

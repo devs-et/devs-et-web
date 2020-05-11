@@ -1,0 +1,67 @@
+<div class="wrap">
+  <div class="container" *ngIf="post$ | async as post; else loader">
+    <div class="left-side-bar">
+      <button 
+        mat-fab 
+        color="accent"
+        class="up-vote-button mat-elevation-z0">
+        <mat-icon>expand_less</mat-icon>
+      </button>
+
+      <div class="points-count">
+        {{post.points}}
+      </div>
+
+      <button
+        class="down-vote-button"
+        mat-icon-button>
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </div>
+
+    <div class="post">
+      <h1 class="post-title">
+        {{ post.title }}
+      </h1>
+
+      <div class="post-date">
+        {{ post.createdAt | date }}
+      </div>
+
+      <div class="post-content">
+        <markdown ngPreserveWhitespaces>
+          {{post.content}}
+        </markdown>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loader>
+    <div class="container loader">
+      <div class="left-side-bar">
+        <button 
+          mat-fab 
+          color="accent"
+          class="side-vote-btn mat-elevation-z0 load">
+          <mat-icon>expand_less</mat-icon>
+        </button>
+
+        <div class="points-count load">
+        </div>
+      </div>
+
+
+      <div class="post">
+        <h1 class="post-title load">
+        </h1>
+
+        <span class="post-date load">
+        </span>
+
+        <div class="post-content load">
+        </div>
+      </div>
+    </div>
+  
+  </ng-template>
+</div>

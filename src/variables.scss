@@ -1,0 +1,79 @@
+$base: adjust-color(#0e2439, $green: -3);
+
+$dark: adjust-color(
+  darken(saturate($base, 1%), 1%), $blue: 0
+);
+
+$dark2: desaturate(lighten($dark, 5%), 5%);
+
+$dark3: desaturate(lighten($dark2, 15%), 15%);
+
+$light: #9cb3c9;
+$light2: #b3cce6;
+$light3: #5f8ab4;
+
+$primary: saturate(lighten($dark, 40%), 20%);
+$accent: adjust-color(
+  desaturate($primary, 15%), 
+  $hue: 135
+);
+$warn: adjust-color(
+  saturate(lighten($base, 10%), 15%),
+  $red: 150 
+);
+
+$dark-text: #000000;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+$light-text: #eef0ff;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+$light-background:    #fafafa;
+$light-bg-darker-5:   darken($light-background, 5%);
+$light-bg-darker-10:  darken($light-background, 10%);
+$light-bg-darker-20:  darken($light-background, 20%);
+$light-bg-darker-30:  darken($light-background, 30%);
+$light-bg-lighter-5:  lighten($light-background, 5%);
+$dark-bg-tooltip:     lighten($dark, 20%);
+$dark-bg-alpha-4:     rgba($dark, 0.04);
+$dark-bg-alpha-12:    rgba($dark, 0.12);
+
+$dark-background:     $dark;
+$dark-bg-lighter-5:   lighten($dark-background, 5%);
+$dark-bg-lighter-10:  lighten($dark-background, 10%);
+$dark-bg-lighter-20:  lighten($dark-background, 20%);
+$dark-bg-lighter-30:  lighten($dark-background, 30%);
+$light-bg-alpha-4:    rgba(#fafafa, 0.04);
+$light-bg-alpha-12:   rgba(#fafafa, 0.12);
+
+$content-width: 64rem;
+
+.container-margin {
+  margin: 3rem 0 5rem;
+}
+
+.left-content {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  gap: 2rem;
+}
+
+.page-title {
+  color: $light-text;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.outline-wrap {
+  border: 3px solid $dark2;
+  border-radius: 5px;
+  min-height: 5rem;
+}

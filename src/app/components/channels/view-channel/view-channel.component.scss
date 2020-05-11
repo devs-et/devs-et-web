@@ -1,0 +1,18 @@
+@import '../../../../variables.scss';
+
+.wrap {
+  @extend .container-margin;
+}
+
+.channel-title {
+  @extend .page-title;
+}
+
+.content {
+  margin-top: 3rem;
+  @extend .left-content;
+
+  .main-content {
+    @extend .outline-wrap;
+  }
+}

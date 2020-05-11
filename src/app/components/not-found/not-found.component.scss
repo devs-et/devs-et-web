@@ -1,0 +1,14 @@
+@import '../../../variables.scss';
+
+.wrap {
+  display: grid;
+  grid-auto-flow: row;
+}
+
+.content {
+  text-align: center;
+  font-size: 15rem;
+  text-shadow: 1rem 1rem 0 opacify($color: $dark, $amount: .8);
+  font-weight: bold;
+  color: $dark2;
+}

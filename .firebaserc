@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "devs-et": {
+      "hosting": {
+        "DEVS-et": [
+          "devs-et"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "devs-et"
+  }
+}

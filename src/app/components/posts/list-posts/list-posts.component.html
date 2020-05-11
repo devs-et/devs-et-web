@@ -1,0 +1,29 @@
+<mat-action-list role="list">
+  <div 
+    mat-list-item 
+    *ngFor="let post of posts$ | async">
+
+    <div class="item-wrap" mat-ripple>
+      <div class="item-vote-wrap">
+        <button mat-icon-button>
+          <mat-icon>expand_less</mat-icon>
+        </button>
+        <div class="item-vote-count">
+          {{post.points}}
+        </div>
+      </div>
+
+      <div 
+        class="item-content-wrap"
+        [routerLink]="[paths.posts.view, post.title | dashedString, post.id]">
+        <div class="item-title">
+          {{post.title}}
+        </div>
+
+        <div class="item-content">
+          {{post.content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-action-list>

@@ -1,0 +1,12 @@
+@import '../variables.scss';
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 3.5rem auto;
+
+  .content {
+    justify-self: center;
+    width: $content-width;
+  }
+}

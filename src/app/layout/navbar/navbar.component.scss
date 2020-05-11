@@ -1,0 +1,26 @@
+@import '../../../variables.scss';
+
+nav {
+  background: $dark2;
+  display: grid;
+  justify-content: center;
+  align-content: stretch;
+  height: 3.5rem;
+
+  .content {
+    width: $content-width;
+    max-width: 100%;
+    display: grid;
+    align-content: center;
+    justify-content: space-between;
+    grid-auto-flow: column;
+
+    .right {
+      align-content: center;
+    }
+  }
+
+  #logo {
+    height: 2rem;
+  }
+}

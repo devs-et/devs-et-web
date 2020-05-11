@@ -1,0 +1,32 @@
+@import '../../../../variables.scss';
+
+.wrap {
+  @extend .container-margin;
+
+  .content {
+    @extend .left-content;
+
+    .channel-card {
+      display: grid;
+      margin-bottom: 2rem;
+      grid-template-columns: min-content auto;
+      gap: 1rem;
+
+      .channel-icon {
+        background: $dark3;
+        height: 4rem;
+        width: 4rem;
+      }
+
+      .card-content {
+        display: grid;
+        align-items: center;
+
+        mat-card-title {
+          font-weight: normal;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

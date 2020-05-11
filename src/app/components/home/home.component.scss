@@ -1,0 +1,35 @@
+@import '../../../variables.scss';
+
+.wrap {
+  @extend .left-content;
+  @extend .container-margin;
+
+  .main-container {
+
+    .content {
+      @extend .outline-wrap;
+      border-radius: 5px;
+      min-height: 4rem;
+    }
+  }
+
+  .side-container {
+    display: grid;
+    align-content: flex-start;
+
+    .side-header {
+      text-align: left;
+      letter-spacing: 2px;
+      font-size: .8rem;
+      padding: .5rem 1rem;
+      font-weight: bold;
+      color: desaturate(lighten($dark2, 30%), 30%);
+      background: $dark2;
+    }
+
+    mat-action-list {
+      margin-left: .5rem;
+    }
+
+  }
+}

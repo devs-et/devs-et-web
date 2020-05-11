@@ -1,0 +1,24 @@
+<div class="wrap">
+  <div class="main-container">
+    <div class="content">
+
+      <button mat-flat-button [routerLink]="[paths.posts.create]">Create Post</button>
+      <list-posts></list-posts>
+    </div>
+  </div>
+
+  <div class="side-container">
+    <button class="side-header" mat-flat-button [routerLink]="[paths.channels.list]">
+      CHANNELS
+    </button>
+
+    <mat-action-list *ngIf="$channels | async as channels">
+      <button 
+        [routerLink]="['/', paths.channels.view, channel.id]"
+        mat-list-item 
+        *ngFor="let channel of channels">
+      {{channel.name}}
+      </button>
+    </mat-action-list>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="wrap">
+  <div class="content">
+    <form [formGroup]="form" (ngSubmit)="submitHandler()">
+      <div class="form-inputs">
+        <mat-form-field class="title-input" appearance="none">
+          <mat-label>Enter Title</mat-label>
+          <input matInput formControlName="title">
+
+          <mat-error *ngIf="title.invalid && (title.dirty || title.touched)">
+            <div *ngIf="title.errors.required">Please add the title</div>
+            <div *ngIf="title.errors.minlength">The title is too short</div>
+          </mat-error>
+        </mat-form-field>
+
+        <textarea id="simplemde"></textarea>
+<!-- 
+        <mat-form-field class="post-content" appearance="none">
+          <mat-label>Write Post</mat-label>
+          <textarea matInput mat-autosize formControlName="content" 
+            (ngModelChange)="parseMarkdown($event)"></textarea>
+
+          <mat-error *ngIf="content.invalid && (content.dirty || content.touched)">
+            <div *ngIf="content.errors.required">Please add a few words</div>
+            <div *ngIf="content.errors.minlength">Please add a few more words</div>
+          </mat-error>
+        </mat-form-field> -->
+
+        <markdown ngPreserveWhitespaces>{{form.value.content}}</markdown>
+      </div>
+
+      <button [disabled]="form.invalid" type="submit" class="submit-button" mat-stroked-button color="primary">
+        <mat-icon>check_circle</mat-icon>
+        Post
+      </button>
+    </form>
+  </div>
+</div>
