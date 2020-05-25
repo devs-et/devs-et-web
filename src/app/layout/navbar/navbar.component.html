@@ -2,14 +2,14 @@
   <div class="content">
 
     <a [routerLink]="['/']">
-      <img src="assets/graphics/logo.background.svg" id="logo">
+      <img src="assets/graphics/logo.svg" id="logo">
     </a>
 
     <div class="right">
-      <button mat-icon-button>
-        <mat-icon>notifications</mat-icon>
-      </button>
-      <button mat-stroked-button>Sign In</button>
+      <button 
+        (click)="showSignInDialog()"
+        mat-raised-button 
+        color="primary">Sign In</button>
     </div>
   </div>
 </nav>

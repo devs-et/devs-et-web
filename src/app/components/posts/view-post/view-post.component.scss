@@ -24,9 +24,9 @@
 
         &:hover,
         &.voted {
-          border-color: darken($accent, 5%);
-          background-color: $accent;
-          background-image: linear-gradient($accent, adjust-color($accent, $hue: -15));
+          border-color: transparentize($accent, .8);
+          color: $light-text;
+          background: $accent;
           transform: scale(1.01) translateY(-3px);
         }
 

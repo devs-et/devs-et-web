@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 $default-font: 'Eina';
+$title-font: 'GT Pressura';
 
 @font-face {
   font-family: $default-font;
@@ -23,6 +24,12 @@ $default-font: 'Eina';
 @font-face {
   font-family: $default-font;
   src: url('./assets/fonts/eina-01-bold.woff2');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: $title-font;
+  src: url('./assets/fonts/GT-Pressura-Ti-Bold.ttf');
   font-weight: 900;
 }
      
@@ -230,3 +237,14 @@ body {
     }
   }
 }
+
+input {
+  font-family: $default-font;
+}
+
+*::selection {
+  background-color: desaturate(lighten($primary, 20%), 0%);
+}
+
+@import './app/lib/simplemde/styles.scss';
+@import './app/lib/markdown/styles.scss';

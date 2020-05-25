@@ -3,7 +3,6 @@
 .wrap {
   display: grid;
   margin-top: 3rem;
-  grid-template-columns: 5fr 2fr;
 
   .content {
     margin-bottom: 4rem;
@@ -15,13 +14,39 @@
   }
 }
 
-mat-form-field {
+.title-input-wrap {
   width: 100%;
+  margin-bottom: 1rem;
 
-  &.title-input {
-    font-size: 1.8rem;
+  .title-input {
+    font-size: 2.5rem;
     font-weight: bold;
-    color: $light;
+    color: $light-text;
+    width: 100%;
+    background: none;
+    border: none;
+    mask-border: 1rem;
+    padding: 1rem .5rem;
+    margin-bottom: .5rem;
+    transition: .3s;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: $light;
+    }
+
+    &.invalid {
+      background-color: transparentize($warn, .8);
+    }
+
+    &:focus {
+      background: $dark2;
+    }
+
+    &.invalid,
+    &:focus {
+      padding: 1rem 2rem;
+    }
   }
 
   &.post-content {
@@ -29,10 +54,31 @@ mat-form-field {
     min-height: 5rem;
   }
 
-  mat-error {
+  .mat-error {
     font-size: .8rem;
-    margin: 0 1.5rem;
     font-weight: normal;
+
+    div {
+      margin: 0 1rem;
+    }
+  }
+}
+
+.content-wrap {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  
+  .form-footer {
+    display: grid;
+    justify-content: end;
+    margin-top: 1rem;
+
+    .submit-button {
+      font-size: 1rem;
+      padding: .5rem 1.5rem;
+      border-color: $primary;
+      justify-self: end;
+    }
   }
 }
 
@@ -42,14 +88,17 @@ mat-form-field {
   border-radius: 5px;
 }
 
-.submit-button {
-  font-size: 1rem;
-  padding: .5rem 1.5rem;
-  border-color: $primary;
-  justify-self: end;
-}
 
 .markdown-editor {
   background: $dark2;
   padding: 1rem 2rem;
+
+}
+
+.invalid {
+
+  .mat-error {
+    margin: 1rem;
+    display: block;
+  }
 }

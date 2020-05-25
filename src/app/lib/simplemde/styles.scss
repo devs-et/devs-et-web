@@ -1,0 +1,80 @@
+@import '../../../variables.scss';
+
+.editor-toolbar {
+  background: $dark2;
+  border: none;
+  border-radius: 0;
+
+  a {
+    color: $light!important;
+    border-radius: 0;
+    border-width: 0;
+
+    &:hover,
+    &.active {
+      background: $dark3;
+      color: $light;
+    }
+  }
+
+  i.separator {
+    border-color: $dark3;
+  }
+}
+
+.CodeMirror {
+  background: $dark2;
+  border: none;
+  color: $light2;
+  border-radius: 0;
+  font-size: 1.1rem;
+
+  .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
+    background-color: transparentize($warn, .8);
+  }
+
+  .CodeMirror-lines {
+    .CodeMirror-cursors {
+      .CodeMirror-cursor {
+        border-color: $light2;
+      }
+    }
+
+    .CodeMirror-code {
+      .CodeMirror-line {
+        .CodeMirror-selectedtext {
+          // background-color: opacify($primary, .5);
+          color: $dark;
+          border-bottom-color: transparent;
+        }
+
+        .cm-formatting {
+          opacity: .5;
+          font-family: monospace;
+          font-weight: 100;
+        }
+
+        .cm-comment {
+          font-family: monospace;
+          background: opacify($dark, .5);
+        }
+
+        .cm-link {
+          color: $primary;
+        }
+
+        .cm-quote {
+          font-size: 1rem;
+        }
+
+        .cm-formatting-quote {
+          margin: 0 .5rem 0 1rem;
+          background: $dark3;
+          border-radius: 2px;
+          padding: 0 .2rem;
+        }
+      }
+    }
+  }
+
+}

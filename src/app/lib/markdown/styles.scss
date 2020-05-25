@@ -1,0 +1,57 @@
+@import '../../../variables.scss';
+
+$code-background: desaturate(darken($dark, 3%), 2%)!important;
+
+markdown {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold!important;
+    color: lighten($light, 15%);
+    margin-bottom: .5rem!important;
+  }
+
+  ul,
+  ol {
+    padding-left: 2rem;
+  }
+
+  blockquote {
+    border-left: .5rem solid $dark2;
+    border-radius: .25rem;
+    margin-bottom: 0;
+    margin-left: .5rem;
+    margin-top: .5rem;
+    padding: .2rem .5rem;
+
+    p {
+      margin-bottom: 0!important;
+    }
+  }
+
+  code {
+    background: $code-background;
+    padding: 0 .5rem;
+    border-radius: .2rem;
+    font-weight: 100;
+  }
+
+  pre {
+    background: $code-background;
+
+    &[class*="language-"].line-numbers {
+      padding-left: 4rem;
+    }
+
+    &.line-numbers {
+      .line-numbers-rows {
+        border-color: transparentize($dark2, .5);
+        border-right-width: 3px;
+
+        span {
+          &::before {
+            color: $dark3;
+          }
+        }
+      }
+    }
+  }
+}

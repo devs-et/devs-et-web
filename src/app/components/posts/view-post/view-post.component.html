@@ -20,17 +20,18 @@
     </div>
 
     <div class="post">
-      <h1 class="post-title">
+
+      <header class="post-title" [routerLink]="['/', 'posts', post.title, id]">
         {{ post.title }}
-      </h1>
+      </header>
 
       <div class="post-date">
         {{ post.createdAt | date }}
       </div>
 
       <div class="post-content">
-        <markdown ngPreserveWhitespaces>
-          {{post.content}}
+        <markdown lineNumbers start="1">
+          {{post.content | toRenderableLanguage}}
         </markdown>
       </div>
     </div>

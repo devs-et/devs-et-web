@@ -16,7 +16,7 @@ import { LayoutModule } from './layout/layout.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 import { environment } from './../environments/environment';
 import { ChannelsModule } from './components/channels/channels.module';
@@ -37,7 +37,15 @@ import { ChannelsModule } from './components/channels/channels.module';
     MatListModule,
     ChannelsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          smartLists: true,
+          smartypants: true
+        }
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

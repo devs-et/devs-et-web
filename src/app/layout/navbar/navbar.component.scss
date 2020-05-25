@@ -20,7 +20,18 @@ nav {
     }
   }
 
-  #logo {
-    height: 2rem;
+  a {
+    display: grid;
+    align-content: center;
+    opacity: .8;
+    transition: .3s;
+
+    #logo {
+      height: 2rem;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

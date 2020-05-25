@@ -1,25 +1,34 @@
-$base: adjust-color(#0e2439, $green: -3);
+$base: saturate(#2e364a, 10%);
 
 $dark: adjust-color(
-  darken(saturate($base, 1%), 1%), $blue: 0
+  darken(saturate($base, 5%), 5%), $blue: 0
 );
 
-$dark2: desaturate(lighten($dark, 5%), 5%);
+$dark2: desaturate(lighten($dark, 5%), 2%);
 
-$dark3: desaturate(lighten($dark2, 15%), 15%);
+$dark3: desaturate(lighten($dark2, 15%), 5%);
 
 $light: #9cb3c9;
 $light2: #b3cce6;
 $light3: #5f8ab4;
 
-$primary: saturate(lighten($dark, 40%), 20%);
-$accent: adjust-color(
-  desaturate($primary, 15%), 
-  $hue: 135
+$primary: adjust-color(
+  adjust-color(
+    saturate(
+      lighten($dark, 30%), 20%
+    ), $hue: 20
+  ), $red: 25
 );
+
+$accent: adjust-color(
+  darken(
+    desaturate($primary, 10%), 0%
+  ), $hue: -130
+);
+
 $warn: adjust-color(
-  saturate(lighten($base, 10%), 15%),
-  $red: 150 
+  saturate(lighten($base, 20%), 15%),
+  $red: 100
 );
 
 $dark-text: #000000;
@@ -56,6 +65,8 @@ $light-bg-alpha-12:   rgba(#fafafa, 0.12);
 
 $content-width: 64rem;
 
+$default-font: 'Eina';
+
 .container-margin {
   margin: 3rem 0 5rem;
 }
@@ -68,8 +79,11 @@ $content-width: 64rem;
 
 .page-title {
   color: $light-text;
-  font-weight: 700;
-  font-size: 2.5rem;
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 110%;
+  margin-top: .5rem;
+  margin-bottom: 1rem;
 }
 
 .outline-wrap {

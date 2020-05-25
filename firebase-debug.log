@@ -1,0 +1,36 @@
+[debug] [2020-05-14T19:35:22.886Z] ----------------------------------------------------------------------
+[debug] [2020-05-14T19:35:22.890Z] Command:       /home/ameer/.nvm/versions/node/v12.16.3/bin/node /home/ameer/.nvm/versions/node/v12.16.3/bin/firebase deploy
+[debug] [2020-05-14T19:35:22.891Z] CLI Version:   8.2.0
+[debug] [2020-05-14T19:35:22.891Z] Platform:      linux
+[debug] [2020-05-14T19:35:22.891Z] Node Version:  v12.16.3
+[debug] [2020-05-14T19:35:22.892Z] Time:          Thu May 14 2020 22:35:22 GMT+0300 (East Africa Time)
+[debug] [2020-05-14T19:35:22.893Z] ----------------------------------------------------------------------
+[debug] [2020-05-14T19:35:22.893Z] 
+[debug] [2020-05-14T19:35:22.910Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-14T19:35:22.911Z] > authorizing via signed-in user
+[debug] [2020-05-14T19:35:22.912Z] [iam] checking project devs-et for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-05-14T19:35:22.919Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-05-14T19:35:22.920Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-05-14T19:35:23.547Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 14 May 2020 19:35:23 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-14T19:35:23.564Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/devs-et:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2020-05-14T19:35:25.677Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 14 May 2020 19:35:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1383","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-14T19:35:25.679Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/devs-et/serviceAccounts/devs-et@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-05-14T19:35:40.700Z] ----------------------------------------------------------------------
+[debug] [2020-05-14T19:35:40.706Z] Command:       /home/ameer/.nvm/versions/node/v12.16.3/bin/node /home/ameer/.nvm/versions/node/v12.16.3/bin/firebase deploy
+[debug] [2020-05-14T19:35:40.707Z] CLI Version:   8.2.0
+[debug] [2020-05-14T19:35:40.707Z] Platform:      linux
+[debug] [2020-05-14T19:35:40.708Z] Node Version:  v12.16.3
+[debug] [2020-05-14T19:35:40.709Z] Time:          Thu May 14 2020 22:35:40 GMT+0300 (East Africa Time)
+[debug] [2020-05-14T19:35:40.709Z] ----------------------------------------------------------------------
+[debug] [2020-05-14T19:35:40.709Z] 
+[debug] [2020-05-14T19:35:40.728Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-05-14T19:35:40.730Z] > authorizing via signed-in user
+[debug] [2020-05-14T19:35:40.730Z] [iam] checking project devs-et for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-05-14T19:35:40.736Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/devs-et:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2020-05-14T19:35:42.850Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 14 May 2020 19:35:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1438","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-05-14T19:35:42.853Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/devs-et/serviceAccounts/devs-et@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}

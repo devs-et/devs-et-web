@@ -14,17 +14,21 @@ import { switchMap } from 'rxjs/operators';
 export class ViewPostComponent implements OnInit {
   post$!: Observable<any>
 
+  id: string;
+
   constructor(
     private db: AngularFirestore,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.post$ = this.route.paramMap.pipe(
       switchMap((params: any) => {
-        const id = params.get('id')
+        this.id = params.get('id')
 
-        return this.db.doc(`posts/${id}`).valueChanges()
+        return this.db.doc(`posts/${this.id}`).valueChanges()
       })
     )
   }
