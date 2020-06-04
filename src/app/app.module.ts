@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,6 +21,17 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 import { environment } from './../environments/environment';
 import { ChannelsModule } from './components/channels/channels.module';
+import { UsersModule } from './components/users/users.module';
+
+import { RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+
+const globalRippleConfig: RippleGlobalOptions = {
+  disabled: false,
+  animation: {
+    enterDuration: 500,
+    exitDuration: 500
+  }
+};
 
 @NgModule({
   declarations: [
@@ -36,7 +48,9 @@ import { ChannelsModule } from './components/channels/channels.module';
     MatButtonModule,
     MatListModule,
     ChannelsModule,
+    UsersModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
@@ -47,7 +61,9 @@ import { ChannelsModule } from './components/channels/channels.module';
       }
     }),
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

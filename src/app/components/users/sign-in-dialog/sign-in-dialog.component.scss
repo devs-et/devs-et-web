@@ -1,0 +1,18 @@
+@import '../../../../variables.scss';
+
+.wrap {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+
+  h1 {
+    font-weight: 600;
+    letter-spacing: 10%;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+}
+
+.mat-button-wrapper {
+  background-color: red!important;
+}

@@ -32,7 +32,7 @@ $title-font: 'GT Pressura';
   src: url('./assets/fonts/GT-Pressura-Ti-Bold.ttf');
   font-weight: 900;
 }
-     
+
 $fontConfig: (
   display-4: mat-typography-level(112px, 112px, 300, $default-font, -0.0134em),
   display-3: mat-typography-level(56px, 56px, 400, $default-font, -0.0089em),
@@ -101,7 +101,7 @@ $mat-primary: (
   main: $primary,
   lighter: $light,
   darker: darken($primary, 25%),
-  200: $primary, 
+  200: $primary,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -175,20 +175,20 @@ $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 
 .material-icons {
   font-size: 24px;
-  font-family: 'Material Icons', 'Material Icons';  
+  font-family: 'Material Icons', 'Material Icons';
   .mat-badge-content {
     font-family: $default-font;
   }
 }
 
-html, 
-body { 
-  height: 100%; 
+html,
+body {
+  height: 100%;
 }
 
-body { 
-  margin: 0; 
-  font-family: $default-font, "Helvetica Neue", sans-serif; 
+body {
+  margin: 0;
+  font-family: $default-font, "Helvetica Neue", sans-serif;
   background-color: $dark;
   color: $light;
 }
@@ -202,6 +202,10 @@ body {
   background-color: $dark2;
 }
 
+.mat-stroked-button {
+  border-width: 2px!important;
+}
+
 * {
   &:focus {
     outline: none;
@@ -210,7 +214,7 @@ body {
 
 .container.loader {
   .load {
-    $gradient: linear-gradient(45deg, 
+    $gradient: linear-gradient(45deg,
         $dark2, transparent, $dark2, transparent, $dark2, $dark2, transparent, $dark2, transparent, $dark2
       );
 
@@ -230,7 +234,7 @@ body {
       100%{background-position:100% 50%}
     }
 
-    &::before, 
+    &::before,
     &::after {
       content: '.';
       color: transparent;

@@ -3,20 +3,35 @@
 nav {
   background: $dark2;
   display: grid;
-  justify-content: center;
-  align-content: stretch;
   height: 3.5rem;
+  justify-content: max-content;
+  justify-content: center;
 
   .content {
-    width: $content-width;
-    max-width: 100%;
+    max-width: $content-width;
     display: grid;
     align-content: center;
-    justify-content: space-between;
     grid-auto-flow: column;
+    box-sizing: border-box;
+    width: calc(100vw - 4rem);
+
+    .left, .right {
+      display: grid;
+      align-content: center;
+    }
+
+    .left {
+    }
 
     .right {
-      align-content: center;
+      justify-content: end;
+
+      .avatar {
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
     }
   }
 

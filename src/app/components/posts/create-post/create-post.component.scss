@@ -67,7 +67,7 @@
 .content-wrap {
   display: grid;
   grid-template-columns: 5fr 2fr;
-  
+
   .form-footer {
     display: grid;
     justify-content: end;
@@ -79,6 +79,12 @@
       border-color: $primary;
       justify-self: end;
     }
+  }
+}
+
+@media (max-width: $content-width) {
+  .content-wrap {
+    grid-template-columns: 1fr;
   }
 }
 

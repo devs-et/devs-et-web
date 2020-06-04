@@ -1,15 +1,38 @@
 <nav>
   <div class="content">
 
-    <a [routerLink]="['/']">
-      <img src="assets/graphics/logo.svg" id="logo">
-    </a>
+    <div class="left">
+      <a [routerLink]="['/']">
+        <img src="assets/graphics/logo.svg" id="logo">
+      </a>
+    </div>
 
     <div class="right">
-      <button 
-        (click)="showSignInDialog()"
-        mat-raised-button 
-        color="primary">Sign In</button>
+      <span
+        [matMenuTriggerFor]="menu"
+        *ngIf="(auth.$uid | async) !== 'null'; else signInButton">
+
+        <ng-container *ngIf="auth.authState | async as user">
+          <img
+            class="avatar"
+            [src]="user.photoURL"
+            [alt]="user.displayName"
+            mat-card-avatar>
+        </ng-container>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </span>
+
+
+      <ng-template #signInButton>
+        <button
+          (click)="showSignInDialog()"
+          mat-raised-button
+          color="primary">Sign In</button>
+      </ng-template>
     </div>
   </div>
 </nav>

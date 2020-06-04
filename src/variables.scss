@@ -75,6 +75,12 @@ $default-font: 'Eina';
   display: grid;
   grid-template-columns: 5fr 2fr;
   gap: 2rem;
+
+  @media (max-width: $content-width) {
+    & {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 .page-title {
@@ -90,4 +96,17 @@ $default-font: 'Eina';
   border: 3px solid $dark2;
   border-radius: 5px;
   min-height: 5rem;
+
+  @media (max-width: $content-width) {
+    margin: 0 1.5rem;
+  }
+}
+
+.page-content {
+  width: 100%;
+  max-width: $content-width;
+  justify-self: center;
+  // padding: 2rem;
+  box-sizing: border-box;
+  margin-bottom: 3rem;
 }
