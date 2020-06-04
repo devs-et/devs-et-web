@@ -24,6 +24,7 @@ import { ChannelsModule } from './components/channels/channels.module';
 import { UsersModule } from './components/users/users.module';
 
 import { RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { AuthService } from './services/users/auth.service';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -62,6 +63,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     }),
   ],
   providers: [
+    AuthService,
     {provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig}
   ],
   bootstrap: [AppComponent]

@@ -4,26 +4,31 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth, User } from 'firebase/app';
 
 import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authState: Observable<User>
-  $uid: Observable<string>;
+  $user: Observable<User> = of(undefined)
+  $uid: Observable<string> = of(undefined)
 
   constructor(
     public auth: AngularFireAuth
   ) {
-    this.authState = auth.authState
-    this.$uid = auth.authState.pipe(
-      map(state => {
-        localStorage.setItem('uid', state ? state.uid : null)
 
-        return state ? state.uid : null
+    auth.authState.pipe(
+      tap(user => {
+
+        this.$user = of(user)
+        if (user) {
+          localStorage.setItem('uid', user.uid)
+          this.$uid = of(user.uid)
+        } else {
+          localStorage.removeItem('uid')
+        }
       })
-    )
+    ).subscribe()
 
     this.$uid = of(localStorage.getItem('uid'))
   }

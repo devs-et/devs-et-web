@@ -8,24 +8,23 @@
     </div>
 
     <div class="right">
+
       <span
-        [matMenuTriggerFor]="menu"
-        *ngIf="(auth.$uid | async) !== 'null'; else signInButton">
+        [matMenuTriggerFor]="userMenu"
+        *ngIf="auth.$user | async as user; else signInButton">
 
-        <ng-container *ngIf="auth.authState | async as user">
-          <img
-            class="avatar"
-            [src]="user.photoURL"
-            [alt]="user.displayName"
-            mat-card-avatar>
-        </ng-container>
 
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Item 1</button>
-          <button mat-menu-item>Item 2</button>
+        <img
+          class="avatar"
+          [src]="user.photoURL"
+          [alt]="user.displayName"
+          mat-card-avatar>
+
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>{{user.displayName}}</button>
+          <button mat-menu-item (click)="auth.signOut()">Sign Out</button>
         </mat-menu>
       </span>
-
 
       <ng-template #signInButton>
         <button
