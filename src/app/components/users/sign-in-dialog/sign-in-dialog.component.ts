@@ -11,9 +11,11 @@ export class SignInDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SignInDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA)
+    public data: any,
     public auth: AuthService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

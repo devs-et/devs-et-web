@@ -7,24 +7,14 @@ $dark: adjust-color(
 $dark2: desaturate(lighten($dark, 5%), 2%);
 
 $dark3: desaturate(lighten($dark2, 15%), 5%);
+$dark4: desaturate(lighten($dark3, 15%), 5%);
 
 $light: #9cb3c9;
 $light2: #b3cce6;
 $light3: #5f8ab4;
 
-$primary: adjust-color(
-  adjust-color(
-    saturate(
-      lighten($dark, 30%), 20%
-    ), $hue: 20
-  ), $red: 25
-);
-
-$accent: adjust-color(
-  darken(
-    desaturate($primary, 10%), 0%
-  ), $hue: -130
-);
+$primary: #7256df;
+$accent: #7de760;
 
 $warn: adjust-color(
   saturate(lighten($base, 20%), 15%),
@@ -106,7 +96,35 @@ $default-font: 'Eina';
   width: 100%;
   max-width: $content-width;
   justify-self: center;
-  // padding: 2rem;
   box-sizing: border-box;
-  margin-bottom: 3rem;
+  margin: 3rem auto;
+}
+
+.app-hero {
+  background: $dark2;
+
+  .hero-inner {
+    width: 100%;
+    max-width: $content-width;
+    margin: 0 auto;
+    display: grid;
+
+    .hero-content {
+      padding: 3rem 0;
+      display: grid;
+      justify-content: start;
+      gap: 1rem;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: $light-text;
+    }
+  }
 }

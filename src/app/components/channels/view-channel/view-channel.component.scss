@@ -1,18 +1,16 @@
 @import '../../../../variables.scss';
 
 .wrap {
-  @extend .container-margin;
-}
+  .hero {
+    @extend .app-hero;
+  }
 
-.channel-title {
-  @extend .page-title;
-}
+  .content {
+    @extend .left-content;
+    @extend .page-content;
 
-.content {
-  margin-top: 3rem;
-  @extend .left-content;
-
-  .main-content {
-    @extend .outline-wrap;
+    .main-content {
+      @extend .outline-wrap;
+    }
   }
 }

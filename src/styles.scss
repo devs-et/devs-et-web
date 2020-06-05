@@ -206,6 +206,10 @@ body {
   border-width: 2px!important;
 }
 
+.mat-ripple-element {
+  opacity: .1;
+}
+
 * {
   &:focus {
     outline: none;

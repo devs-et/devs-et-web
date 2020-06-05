@@ -2,9 +2,11 @@
   <div class="content">
 
     <div class="left">
-      <a [routerLink]="['/']">
-        <img src="assets/graphics/logo.svg" id="logo">
-      </a>
+      <span>
+        <a [routerLink]="['/']">
+          <img src="assets/graphics/logo.svg" id="logo">
+        </a>
+      </span>
     </div>
 
     <div class="right">
@@ -13,22 +15,26 @@
         [matMenuTriggerFor]="userMenu"
         *ngIf="auth.$user | async as user; else signInButton">
 
-
         <img
           class="avatar"
           [src]="user.photoURL"
-          [alt]="user.displayName"
+          onerror="this.src='assets/graphics/empty.png'"
           mat-card-avatar>
 
         <mat-menu #userMenu="matMenu">
-          <button mat-menu-item>{{user.displayName}}</button>
+          <button mat-menu-item
+            [routerLink]="['users', user.uid]"
+          >{{user.displayName}}</button>
           <button mat-menu-item (click)="auth.signOut()">Sign Out</button>
         </mat-menu>
       </span>
 
       <ng-template #signInButton>
         <button
-          (click)="showSignInDialog()"
+          *ngIf="auth.loaded"
+          (click)="auth.dialog.open({
+            desc: 'You can sign in with you Github account'
+          })"
           mat-raised-button
           color="primary">Sign In</button>
       </ng-template>

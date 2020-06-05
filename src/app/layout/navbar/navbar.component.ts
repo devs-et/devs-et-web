@@ -6,6 +6,7 @@ import {
 } from '@angular/material/dialog';
 
 import { AuthService } from '../../services/users/auth.service';
+import { SignInDialogService } from '../../services/users/sign-in-dialog.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ import { AuthService } from '../../services/users/auth.service';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog,
+    public signInDialog: SignInDialogService,
     public auth: AuthService,
   ) {
   }
@@ -24,18 +25,7 @@ export class NavbarComponent implements OnInit {
   }
 
   showSignInDialog() {
-
-    const dialogRef = this.dialog.open(SignInDialogComponent, {
-      width: '400px',
-      maxWidth: '90%',
-      maxHeight: '90%',
-      // data: {name: this.name, animal: this.animal}
-    });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   // this.animal = result;
-    // });
+    this.signInDialog.open()
   }
 
 }

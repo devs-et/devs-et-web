@@ -1,0 +1,26 @@
+@import '../../../../variables.scss';
+
+.wrap {
+  .hero {
+    @extend .app-hero;
+
+    .hero-content {
+      grid-template-columns: auto auto;
+      align-items: center;
+
+      .profile-picture {
+        img {
+          background: #ffffff11;
+          width: 8rem;
+          height: 8rem;
+          border-radius: 50%;
+          padding: .5rem;
+        }
+      }
+
+      .username {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

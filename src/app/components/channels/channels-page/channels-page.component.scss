@@ -1,10 +1,21 @@
 @import '../../../../variables.scss';
 
 .wrap {
-  @extend .container-margin;
+
+  .hero {
+    @extend .app-hero;
+
+    .hero-inner {
+      .hero-bottom {
+        grid-template-columns: 5fr 2fr;
+        gap: 1rem;
+      }
+    }
+  }
 
   .content {
     @extend .left-content;
+    @extend .page-content;
 
     .channel-card {
       display: grid;

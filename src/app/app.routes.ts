@@ -10,6 +10,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateChannelComponent } from './components/channels/create-channel/create-channel.component';
 
 import { paths } from './models/route.model';
+import { ProfileComponent } from './components/users/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
   {
     path: `${paths.channels.view}/:id`,
     component: ViewChannelComponent,
+  },
+  {
+    path: 'users/:id',
+    component: ProfileComponent,
   },
 
 

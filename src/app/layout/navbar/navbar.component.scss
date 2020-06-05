@@ -21,6 +21,7 @@ nav {
     }
 
     .left {
+      justify-content: start;
     }
 
     .right {
@@ -29,6 +30,8 @@ nav {
       .avatar {
         height: 2.5rem;
         width: 2.5rem;
+        max-width: 2.5rem;
+        max-height: 2.5rem;
         border-radius: 50%;
         cursor: pointer;
         background: #ffffff88;

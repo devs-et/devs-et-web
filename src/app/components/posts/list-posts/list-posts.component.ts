@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import { paths } from '../../../models/route.model';
+import { AuthService } from 'app/services/users/auth.service';
 
 @Component({
   selector: 'list-posts',
@@ -21,10 +22,11 @@ export class ListPostsComponent implements OnInit {
 
   constructor(
     private db: AngularFirestore,
+    public auth: AuthService,
   ) { }
 
   ngOnInit(): void {
-    this.posts$ = this.db.collection('posts').valueChanges({ idField: 'id' }) 
+    this.posts$ = this.db.collection('posts').valueChanges({ idField: 'id' })
   }
 
 }

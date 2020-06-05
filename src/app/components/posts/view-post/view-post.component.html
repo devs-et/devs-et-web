@@ -1,8 +1,8 @@
 <div class="wrap">
   <div class="container" *ngIf="post$ | async as post; else loader">
     <div class="left-side-bar">
-      <button 
-        mat-fab 
+      <button
+        mat-fab
         color="accent"
         class="up-vote-button mat-elevation-z0">
         <mat-icon>expand_less</mat-icon>
@@ -21,7 +21,7 @@
 
     <div class="post">
 
-      <header class="post-title" [routerLink]="['/', 'posts', post.title, id]">
+      <header class="post-title">
         {{ post.title }}
       </header>
 
@@ -40,8 +40,8 @@
   <ng-template #loader>
     <div class="container loader">
       <div class="left-side-bar">
-        <button 
-          mat-fab 
+        <button
+          mat-fab
           color="accent"
           class="side-vote-btn mat-elevation-z0 load">
           <mat-icon>expand_less</mat-icon>
@@ -63,6 +63,6 @@
         </div>
       </div>
     </div>
-  
+
   </ng-template>
 </div>

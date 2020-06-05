@@ -1,7 +1,7 @@
 @import '../../../../variables.scss';
 
 .wrap {
-  margin: 3rem 2rem;
+  @extend .page-content;
 
   .container {
     display: grid;

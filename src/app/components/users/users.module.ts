@@ -6,11 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignInDialogComponent } from './sign-in-dialog/sign-in-dialog.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignInDialogComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

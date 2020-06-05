@@ -2,7 +2,8 @@
 
 .wrap {
   display: grid;
-  margin-top: 3rem;
+  @extend .page-content;
+
 
   .content {
     margin-bottom: 4rem;

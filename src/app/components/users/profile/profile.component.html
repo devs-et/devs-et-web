@@ -1,0 +1,26 @@
+<div class="wrap">
+  <div *ngIf="$user | async as user">
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="profile-picture">
+            <img
+              [src]="user.photoURL"
+              alt="" onerror="this.src='assets/graphics/empty.png'">
+          </div>
+          <div>
+            <h1>{{user.displayName}}</h1>
+
+            <div class="username">
+              @username
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <button mat-raised-button color="primary">Follow</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

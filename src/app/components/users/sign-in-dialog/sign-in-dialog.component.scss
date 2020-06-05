@@ -7,12 +7,19 @@
 
   h1 {
     font-weight: 600;
-    letter-spacing: 10%;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    color: $dark4;
     text-transform: uppercase;
     margin-bottom: 1rem;
   }
-}
 
-.mat-button-wrapper {
-  background-color: red!important;
+  .desc {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .mat-error {
+    margin-bottom: 1rem;
+  }
 }
