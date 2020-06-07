@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SignInDialogComponent } from 'app/components/users/sign-in-dialog/sign-in-dialog.component';
-import { threadId } from 'worker_threads';
 
 @Injectable({
   providedIn: 'root'

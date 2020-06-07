@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignInDialogComponent } from './sign-in-dialog/sign-in-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    IonicModule.forRoot(),
   ]
 })
 export class UsersModule { }

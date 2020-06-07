@@ -18,6 +18,7 @@ import { ListPostsComponent } from './list-posts/list-posts.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 
 import { PipesModule } from '../../pipes/pipes.module';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PipesModule } from '../../pipes/pipes.module';
     MatListModule,
     MatRippleModule,
     MarkdownModule.forRoot(),
+    IonicModule
   ],
   exports: [
     CreatePostComponent,

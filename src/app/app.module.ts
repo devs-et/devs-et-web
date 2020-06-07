@@ -26,6 +26,7 @@ import { UsersModule } from './components/users/users.module';
 import { RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { AuthService } from './services/users/auth.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { IonicModule } from '@ionic/angular';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -63,6 +64,7 @@ const globalRippleConfig: RippleGlobalOptions = {
       }
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    // IonicModule.forRoot(),
   ],
   providers: [
     AuthService,

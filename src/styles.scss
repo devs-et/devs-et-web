@@ -190,7 +190,7 @@ body {
   margin: 0;
   font-family: $default-font, "Helvetica Neue", sans-serif;
   background-color: $dark;
-  color: $light;
+  color: $light!important;
 }
 
 .mat-form-field-flex {
@@ -208,6 +208,13 @@ body {
 
 .mat-ripple-element {
   opacity: .1;
+}
+
+.mat-focus-indicator {
+  &:hover,
+  &:focus {
+    background: #ffffff08!important;
+  }
 }
 
 * {
@@ -252,6 +259,27 @@ input {
 
 *::selection {
   background-color: desaturate(lighten($primary, 20%), 0%);
+}
+
+/* width */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+  background: none;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  transition: .3s;
+  background: $dark2;
+
+  /* Handle on hover */
+  &:hover {
+    background: $dark3;
+  }
 }
 
 @import './app/lib/simplemde/styles.scss';
