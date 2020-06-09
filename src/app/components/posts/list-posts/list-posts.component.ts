@@ -1,11 +1,12 @@
 import { DashedStringPipe } from './../../../pipes/dashed-string.pipe';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 
 import { paths } from '../../../models/route.model';
 import { AuthService } from 'app/services/users/auth.service';
+import { PostsCrudService } from '../../../services/posts/posts-crud.service';
 
 @Component({
   selector: 'list-posts',
@@ -16,6 +17,7 @@ import { AuthService } from 'app/services/users/auth.service';
   ]
 })
 export class ListPostsComponent implements OnInit {
+  @Input('channel-id') channelId: string;
 
   posts$!: Observable<any[]>;
   paths = paths;
@@ -23,10 +25,24 @@ export class ListPostsComponent implements OnInit {
   constructor(
     private db: AngularFirestore,
     public auth: AuthService,
-  ) { }
-
-  ngOnInit(): void {
-    this.posts$ = this.db.collection('posts').valueChanges({ idField: 'id' })
+    public crud: PostsCrudService,
+  ) {
   }
 
+  ngOnInit(): void {
+    const query = (ref) => {
+      return (this.channelId
+        ? ref.where('channelId', '==', this.channelId)
+        : ref
+      ).orderBy('trend', 'desc').orderBy('points', 'desc')
+
+    }
+
+    this.posts$ = this.db.collection('posts', query)
+      .valueChanges({ idField: 'id' })
+  }
+
+  upVote(postId: string) {
+    this.crud.upVote(postId)
+  }
 }

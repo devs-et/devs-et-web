@@ -25,13 +25,8 @@
       font-size: .8rem;
       padding: .5rem 1rem;
       font-weight: bold;
-      color: desaturate(lighten($dark2, 30%), 30%);
+      color: $dark4;
       background: $dark2;
     }
-
-    mat-action-list {
-      margin-left: .5rem;
-    }
-
   }
 }

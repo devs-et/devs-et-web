@@ -19,12 +19,15 @@ import { ViewPostComponent } from './view-post/view-post.component';
 
 import { PipesModule } from '../../pipes/pipes.module';
 import { IonicModule } from '@ionic/angular';
+import { MatMenuModule } from '@angular/material/menu';
+import { PostMenuComponent } from './post-menu/post-menu.component';
 
 @NgModule({
   declarations: [
     CreatePostComponent,
     ListPostsComponent,
     ViewPostComponent,
+    PostMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,8 @@ import { IonicModule } from '@ionic/angular';
     PipesModule,
     ReactiveFormsModule,
     RouterModule,
+    IonicModule,
+    MatMenuModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,

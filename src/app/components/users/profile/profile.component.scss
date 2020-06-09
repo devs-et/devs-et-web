@@ -8,7 +8,24 @@
       grid-template-columns: auto auto;
       align-items: center;
 
+      @media (max-width: $content-width) {
+        grid-auto-flow: row;
+        grid-template-columns: none;
+        grid-template-rows: auto auto;
+        justify-content: stretch!important;
+
+        .user-info {
+          margin-top: 1rem;
+          justify-items: center;
+          display: grid;
+        }
+      }
+
       .profile-picture {
+        justify-self: center;
+        display: grid;
+        justify-content: center;
+
         img {
           background: #ffffff11;
           width: 8rem;

@@ -1,4 +1,4 @@
-<div class="wrap" *ngIf="channel$ | async as channel">
+<div class="wrap" *ngIf="$channel | async as channel">
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-content">
@@ -15,7 +15,17 @@
   </div>
 
   <div class="content">
-    <div class="main-content">a</div>
+    <div class="main-content">
+      <button
+        [routerLink]="['', 'channels', channel.id, 'add-post']"
+        mat-flat-button
+        class="add-button"
+        color="accent">
+        <ion-icon name="add"></ion-icon>
+        Add Post
+      </button>
+      <list-posts [channel-id]="channel.id"></list-posts>
+    </div>
     <div class="side-bar">b</div>
   </div>
 </div>

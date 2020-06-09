@@ -21,22 +21,39 @@
           onerror="this.src='assets/graphics/empty.png'"
           mat-card-avatar>
 
-        <mat-menu #userMenu="matMenu">
+        <mat-menu
+          xPosition="before"
+          #userMenu="matMenu">
           <button mat-menu-item
+            class="user-menu-item"
             [routerLink]="['users', user.uid]"
-          >{{user.displayName}}</button>
-          <button mat-menu-item (click)="auth.signOut()">Sign Out</button>
+          >
+            {{user.displayName}}
+            <ion-icon name="person-circle-outline"></ion-icon>
+          </button>
+          <button mat-menu-item
+            class="warn user-menu-item"
+            (click)="auth.signOut()">
+            Sign Out
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </button>
         </mat-menu>
       </span>
 
       <ng-template #signInButton>
         <button
-          *ngIf="auth.loaded"
+          *ngIf="auth.loaded; else loader"
           (click)="auth.dialog.open({
             desc: 'You can sign in with you Github account'
           })"
           mat-raised-button
           color="primary">Sign In</button>
+
+          <ng-template #loader>
+            <div class="loader">
+              <img class="avatar load" src="assets/graphics/empty.png" />
+            </div>
+          </ng-template>
       </ng-template>
     </div>
   </div>

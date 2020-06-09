@@ -165,7 +165,17 @@ $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   padding: 0 1.15em;
   margin: 0 .65em;
   min-width: 3em;
-  line-height: 36.4px
+  line-height: 36.4px;
+  transition: .3s;
+}
+
+.mat-stroked-button {
+  border-color: $light-text;
+
+  &:hover,
+  &:focus {
+    border-color: rgba($light-text, 0.8);
+  }
 }
 
 .mat-standard-chip {
@@ -210,11 +220,19 @@ body {
   opacity: .1;
 }
 
-.mat-focus-indicator {
-  &:hover,
-  &:focus {
-    background: #ffffff08!important;
+.mat-button-focus-overlay,
+.mat-focus-overlay {
+  background: $dark;
+}
+
+.mat-menu-panel {
+  button.warn {
+    color: $warn;
   }
+}
+
+.mat-action-list {
+
 }
 
 * {
@@ -223,7 +241,7 @@ body {
   }
 }
 
-.container.loader {
+.loader {
   .load {
     $gradient: linear-gradient(45deg,
         $dark2, transparent, $dark2, transparent, $dark2, $dark2, transparent, $dark2, transparent, $dark2
@@ -258,27 +276,26 @@ input {
 }
 
 *::selection {
-  background-color: desaturate(lighten($primary, 20%), 0%);
+  // background-color: desaturate(lighten($primary, 20%), 0%);
 }
 
-/* width */
 *::-webkit-scrollbar {
   width: 10px;
+  margin: .3rem;
 }
 
-/* Track */
 *::-webkit-scrollbar-track {
   background: none;
+  margin: .3rem;
 }
 
-/* Handle */
 *::-webkit-scrollbar-thumb {
-  transition: .3s;
-  background: $dark2;
+  transition: .5s;
+  background: $dark3;
+  box-sizing: border-box;
 
-  /* Handle on hover */
   &:hover {
-    background: $dark3;
+    background: $dark4;
   }
 }
 

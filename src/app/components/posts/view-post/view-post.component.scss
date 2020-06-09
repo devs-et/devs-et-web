@@ -2,6 +2,7 @@
 
 .wrap {
   @extend .page-content;
+  @extend .pad-when-full;
 
   .container {
     display: grid;
@@ -9,49 +10,74 @@
     gap: 1rem;
 
     .left-side-bar {
-      display: grid;
-      grid-auto-flow: row;
-      justify-content: center;
-      justify-items: center;
-      align-content: flex-start;
+      width: 4rem;
 
-      .up-vote-button {
-        border: 3px solid $dark2;
-        box-sizing: content-box;
-        background: none;
-        transition: .8s;
-        margin-top: .5rem;
+      .left-side-bar-content {
+        display: grid;
+        grid-auto-flow: row;
+        justify-content: center;
+        justify-items: center;
+        align-content: flex-start;
+        position: fixed;
 
-        &:hover,
-        &.voted {
-          border-color: transparentize($accent, .8);
-          color: $light-text;
-          background: $accent;
-          transform: scale(1.01) translateY(-3px);
-        }
+        .up-vote-button {
+          border: 3px solid $dark2;
+          box-sizing: content-box;
+          background: none;
+          transition: .8s;
+          margin-top: .5rem;
 
-        .mat-buttonwrapper {
+          .remove-upvote-icon {
+            display: none;
+          }
+
+          &:hover,
+          &.voted {
+            border-color: transparentize($accent, .98);
+            color: $light-text;
+            background: transparentize($accent, .6);
+            transform: scale(1.01) translateY(-3px);
+          }
+
+          &:hover {
+            background: transparentize($accent, .4)
+          }
+
+          &.voted.remove-vote {
+            &:hover {
+              background: transparentize($warn, .6);
+
+              .remove-upvote-icon {
+                display: inline-block;
+              }
+
+              .upvote-icon {
+                display: none;
+              }
+            }
+          }
+
           ion-icon {
-            font-size: 6rem;
+            font-size: 1.3rem;
           }
         }
-      }
 
-      .down-vote-button {
-        margin-top: .5rem;
-        color: $dark3;
+        // TODO: rename to menu button
+        .down-vote-button {
+          margin-top: .5rem;
 
-        &:hover {
-          color: $light-text;
-          background-color: $dark2;
+          &:hover {
+            color: $light-text;
+            background-color: $dark2;
+          }
         }
-      }
 
-      .points-count {
-        text-align: center;
-        font-weight: bold;
-        margin-top: .8rem;
-        justify-self: center;
+        .points-count {
+          text-align: center;
+          margin-top: .8rem;
+          justify-self: center;
+          font-size: 1.3rem;
+        }
       }
     }
 

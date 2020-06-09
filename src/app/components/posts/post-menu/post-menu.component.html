@@ -1,0 +1,45 @@
+<div [ngClass]="{'before': position === 'before'}">
+  <button
+    *ngIf="crud.canDo(post, 'remove-upvote') | async"
+    mat-menu-item
+    class="vote-menu-item">
+    <ion-icon class="left-icon" name="remove"></ion-icon>
+    Remove Upvote
+    <ion-icon class="right-icon" name="remove"></ion-icon>
+  </button>
+
+  <button
+    *ngIf="crud.canDo(post, 'downvote') | async"
+    mat-menu-item
+    class="vote-menu-item">
+    <ion-icon class="left-icon" name="chevron-down-circle-outline"></ion-icon>
+    Downvote
+    <ion-icon class="right-icon" name="chevron-down-circle-outline"></ion-icon>
+  </button>
+
+  <button
+    *ngIf="crud.canDo(post, 'edit') | async"
+    mat-menu-item
+    class="vote-menu-item">
+    <ion-icon class="left-icon" name="create-outline"></ion-icon>
+    Edit
+    <ion-icon class="right-icon" name="create-outline"></ion-icon>
+  </button>
+
+  <button
+    *ngIf="crud.canDo(post, 'report') | async"
+    mat-menu-item class="warn vote-menu-item">
+    <ion-icon class="left-icon" name="flag-outline"></ion-icon>
+    Report
+    <ion-icon class="right-icon" name="flag-outline"></ion-icon>
+  </button>
+
+  <button
+    *ngIf="crud.canDo(post, 'delete') | async"
+    mat-menu-item
+    class="warn vote-menu-item">
+    <ion-icon class="left-icon" name="trash-outline"></ion-icon>
+    Delete
+    <ion-icon class="right-icon" name="trash-outline"></ion-icon>
+  </button>
+</div>

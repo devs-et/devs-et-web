@@ -4,7 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import * as $ from 'rxjs/operators';
+import { PostsCrudService } from '../../../services/posts/posts-crud.service';
+import { AuthService } from '../../../services/users/auth.service';
 
 @Component({
   selector: 'view-post',
@@ -19,13 +21,15 @@ export class ViewPostComponent implements OnInit {
   constructor(
     private db: AngularFirestore,
     private route: ActivatedRoute,
+    public crud: PostsCrudService,
+    public auth: AuthService,
   ) {
 
   }
 
   ngOnInit(): void {
     this.post$ = this.route.paramMap.pipe(
-      switchMap((params: any) => {
+      $.switchMap((params: any) => {
         this.id = params.get('id')
 
         return this.db.doc(`posts/${this.id}`).valueChanges()

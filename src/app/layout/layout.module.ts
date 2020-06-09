@@ -3,6 +3,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BasicLayoutComponent } from './basic-layout/basic-layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
   ],
   imports: [
     CommonModule,
+    IonicModule,
     MatButtonModule,
     MatIconModule,
     MatDialogModule,

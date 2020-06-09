@@ -11,6 +11,8 @@ import { MatRippleModule } from '@angular/material/core';
 
 import { ViewChannelComponent } from './view-channel/view-channel.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
+import { PostModule } from '../posts/post.module';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { CreateChannelComponent } from './create-channel/create-channel.componen
   imports: [
     CommonModule,
     RouterModule,
+    PostModule,
+    IonicModule,
     MatListModule,
     MatButtonModule,
     MatCardModule,

@@ -18,12 +18,12 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: paths.posts.create,
-    component: CreatePostComponent,
-  },
-  {
     path: `${paths.posts.view}/:name/:id`,
     component: ViewPostComponent,
+  },
+  {
+    path: `channels/:channel-id/add-post`,
+    component: CreatePostComponent,
   },
   {
     path: `${paths.channels.list}`,

@@ -3,7 +3,7 @@
 .wrap {
   display: grid;
   @extend .page-content;
-
+  @extend .pad-when-full;
 
   .content {
     margin-bottom: 4rem;
@@ -107,5 +107,14 @@
   .mat-error {
     margin: 1rem;
     display: block;
+  }
+}
+
+.channel-wrap {
+  margin: .5rem;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 }

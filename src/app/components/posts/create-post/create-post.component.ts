@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { MarkdownService, MarkdownModule } from 'ngx-markdown';
 
 import { toDashedString } from '../../../lib/dashed-string';
 import { paths } from './../../../models/route.model';
 
+import * as $ from 'rxjs/operators';
+
 import * as SimpleMDE from 'simplemde';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../../services/users/auth.service';
 
 interface Post {
   title: string;
@@ -22,6 +26,8 @@ interface Post {
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent implements OnInit {
+  $channel: Observable<any>
+  channelId: string;
   post: Post;
   form: any;
 
@@ -31,6 +37,8 @@ export class CreatePostComponent implements OnInit {
     private db: AngularFirestore,
     private router: Router,
     private md: MarkdownService,
+    private route: ActivatedRoute,
+    public auth: AuthService,
   ) {
     this.post = {} as Post
 
@@ -48,6 +56,15 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.$channel = this.route.paramMap.pipe(
+      $.switchMap(params => {
+        this.channelId = params.get('channel-id')
+
+        return this.db.doc(`channels/${this.channelId}`).valueChanges()
+      })
+    )
+
     this.contentEditor = new SimpleMDE({
       element: document.getElementById('add-post-editor'),
       placeholder: "Write your post here...",
@@ -93,10 +110,10 @@ export class CreatePostComponent implements OnInit {
   validateTitle() {
     const value = this.form.title.trim()
 
-    this.form.errors.title = value.length === 0 
+    this.form.errors.title = value.length === 0
       ? ['Please add a title']
       : (
-        value.length < 5 
+        value.length < 5
           ? ['The title is too short']
           : []
       )
@@ -111,9 +128,34 @@ export class CreatePostComponent implements OnInit {
 
   async submitHandler() {
 
+    this.auth.auth.authState.subscribe(user => {
+      if (user) {
+        this.$channel.subscribe(channel => {
+          if (channel) {
+            this.savePost({
+              uid: user.uid,
+              displayName: user.displayName,
+            }, {
+              ...channel,
+              id: this.channelId,
+            })
+          }
+        })
+      } else {
+        this.auth.dialog.open({
+          desc: 'Please sign in to add a post'
+        })
+      }
+    })
+  }
+
+  async savePost(user, channel) {
+
+    console.log(user, channel)
+
     const formValue = {
       title: this.form.title,
-      content: this.form.content 
+      content: this.form.content,
     }
 
     this.form.active = false
@@ -124,6 +166,11 @@ export class CreatePostComponent implements OnInit {
       await this.db.collection('posts').add({
         ...formValue,
         points: 1,
+        channel: channel,
+        channelId: channel.id,
+        uid: user.uid,
+        user: user,
+        trend: moment().add(7, 'days').unix,
         createdAt: now,
         updatedAt: now,
       }).then(doc => {
@@ -136,7 +183,7 @@ export class CreatePostComponent implements OnInit {
           doc.id
         ])
       })
-    } catch(err) {
+    } catch (err) {
       this.form.active = true
       console.log(err)
     }

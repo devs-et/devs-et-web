@@ -1,14 +1,20 @@
 <div class="wrap">
   <div class="content">
     <div>
+      <div *ngIf="$channel | async as channel" class="channel-wrap">
+        <h3>
+          {{channel.name}}
+        </h3>
+      </div>
+
       <div class="form-inputs">
         <div class="title-input-wrap">
-          <input 
+          <input
             autofocus
             [ngClass]="{'invalid': form.errors.title.length > 0}"
-            [(ngModel)]="form.title" 
+            [(ngModel)]="form.title"
             (ngModelChange)="validateTitle()"
-            placeholder="Enter Title" 
+            placeholder="Enter Title"
             class="title-input">
 
           <mat-error *ngIf="form.errors.title.length > 0">
@@ -19,7 +25,7 @@
         <div class="content-wrap">
           <div class="editor">
             <div [ngClass]="{'invalid': form.errors.content.length > 0}">
-              <textarea 
+              <textarea
                 id="add-post-editor"></textarea>
 
               <mat-error *ngIf="form.errors.content.length > 0">
@@ -28,14 +34,14 @@
             </div>
 
             <div class="form-footer">
-              <button 
+              <button
                 (click)="submitHandler()"
-                [disabled]="!form.valid || !form.active" 
-                type="submit" 
-                class="submit-button" 
+                [disabled]="!form.valid || !form.active"
+                type="submit"
+                class="submit-button"
                 mat-raised-button color="primary">
-                <mat-icon>check_circle</mat-icon>
                 Post
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
               </button>
             </div>
           </div>

@@ -16,10 +16,20 @@
 
   .desc {
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .mat-error {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .sign-in-button {
+    padding: .5rem 1rem;
+
+    ion-icon {
+      font-size: 1.6rem;
+      margin-right: .3rem;
+      vertical-align: middle;
+    }
   }
 }

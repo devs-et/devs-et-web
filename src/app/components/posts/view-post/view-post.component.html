@@ -1,22 +1,43 @@
 <div class="wrap">
   <div class="container" *ngIf="post$ | async as post; else loader">
     <div class="left-side-bar">
-      <button
-        mat-fab
-        color="accent"
-        class="up-vote-button mat-elevation-z0">
-        <ion-icon name="chevron-up"></ion-icon>
-      </button>
+      <div class="left-side-bar-content">
+        <button
+          mat-fab
+          [ngClass]="{
+            'voted': crud.hasVoted(auth.$uid | async, post.votes),
+            'remove-vote': crud.canDo(post, 'remove-upvote') | async
+          }"
+          (click)="crud.vote(id)"
+          color="accent"
+          class="up-vote-button mat-elevation-z0">
+          <ion-icon
+            class="upvote-icon"
+            name="chevron-up-outline"></ion-icon>
+          <ion-icon
+            class="remove-upvote-icon"
+            name="remove-outline"></ion-icon>
+        </button>
 
-      <div class="points-count">
-        {{post.points}}
+        <div class="points-count">
+          {{post.points}}
+        </div>
+
+        <button
+          *ngIf="auth.$uid | async"
+          [matMenuTriggerFor]="postMenu"
+          class="down-vote-button"
+          mat-icon-button>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <mat-menu
+          overlapTrigger="true"
+          #postMenu="matMenu">
+          <post-menu [post]="post"></post-menu>
+        </mat-menu>
+
       </div>
-
-      <button
-        class="down-vote-button"
-        mat-icon-button>
-        <ion-icon name="chevron-up"></ion-icon>
-      </button>
     </div>
 
     <div class="post">
@@ -25,9 +46,20 @@
         {{ post.title }}
       </header>
 
-      <div class="post-date">
-        {{ post.createdAt | date }}
+      <div class="post-metadata">
+        <span class="post-channel" *ngIf="post.channel as channel">
+          #{{channel.name}} ·
+        </span>
+
+        <span class="post-user" *ngIf="post.user as user">
+          @{{user.displayName}} ·
+        </span>
+
+        <span class="post-date">
+          {{ post.createdAt | date }}
+        </span>
       </div>
+
 
       <div class="post-content">
         <markdown lineNumbers start="1">
@@ -40,14 +72,16 @@
   <ng-template #loader>
     <div class="container loader">
       <div class="left-side-bar">
-        <button
-          mat-fab
-          color="accent"
-          class="side-vote-btn mat-elevation-z0 load">
-          <ion-icon name="chevron-up"></ion-icon>
-        </button>
+        <div class="left-side-bar-content">
+          <button
+            mat-fab
+            color="accent"
+            class="side-vote-btn mat-elevation-z0 load">
+            <ion-icon name="chevron-up-outline"></ion-icon>
+          </button>
 
-        <div class="points-count load">
+          <div class="points-count load">
+          </div>
         </div>
       </div>
 

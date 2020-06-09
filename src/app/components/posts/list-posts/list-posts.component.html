@@ -7,11 +7,13 @@
       <div class="item-vote-wrap">
         <button
           mat-icon-button
-          (click)="auth.dialog.open({
-            desc: 'You need to sign in to vote'
-          })"
+          [ngClass]="{'voted': crud.hasVoted(auth.$uid | async, post.votes)}"
+          (click)="upVote(post.id)"
         >
-        <ion-icon name="chevron-up"></ion-icon>
+        <ion-icon class="upvote-icon"
+          name="chevron-up-outline"></ion-icon>
+        <ion-icon class="remove-vote-icon"
+          name="remove"></ion-icon>
         </button>
         <div class="item-vote-count">
           {{post.points}}
@@ -20,15 +22,42 @@
 
       <div
         class="item-content-wrap"
-        [routerLink]="[paths.posts.view, post.title | dashedString, post.id]">
+        [routerLink]="['', paths.posts.view, post.title | dashedString, post.id]">
 
         <div class="item-title">
           {{post.title}}
         </div>
 
         <div class="item-content">
-          #channel · @username · {{post.createdAt | momentAgo}}
+          <span *ngIf="post.channel as channel">
+            #{{channel.name}} ·
+          </span>
+
+          <span *ngIf="post.user as user">
+            @{{user.displayName}} ·
+          </span>
+
+          <span>
+            {{post.createdAt | momentAgo}}
+          </span>
         </div>
+      </div>
+
+      <div class="item-menu-wrap">
+        <button
+          *ngIf="auth.$uid | async"
+          [matMenuTriggerFor]="downVoteMenu"
+          mat-icon-button>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <mat-menu
+          xPosition="before"
+          overlapTrigger="true"
+          #downVoteMenu="matMenu">
+
+          <post-menu position="before" [post]="post"></post-menu>
+        </mat-menu>
       </div>
     </div>
   </div>

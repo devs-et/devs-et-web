@@ -1,8 +1,6 @@
 <div class="wrap">
   <div class="main-container">
     <div class="content">
-
-      <button mat-flat-button [routerLink]="[paths.posts.create]">Create Post</button>
       <list-posts></list-posts>
     </div>
   </div>
@@ -13,9 +11,9 @@
     </button>
 
     <mat-action-list *ngIf="$channels | async as channels">
-      <button 
+      <button
         [routerLink]="['/', paths.channels.view, channel.id]"
-        mat-list-item 
+        mat-list-item
         *ngFor="let channel of channels">
       {{channel.name}}
       </button>

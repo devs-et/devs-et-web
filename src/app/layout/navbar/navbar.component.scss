@@ -34,7 +34,13 @@ nav {
         max-height: 2.5rem;
         border-radius: 50%;
         cursor: pointer;
-        background: #ffffff88;
+        background-color: $dark4;
+      }
+
+      .loader {
+        .load.avatar {
+          background-color: none;
+        }
       }
     }
   }
@@ -54,3 +60,13 @@ nav {
     }
   }
 }
+
+.user-menu-item {
+  text-align: end;
+
+  ion-icon {
+    font-size: 1.5rem;
+    vertical-align: text-bottom;
+  }
+}
+

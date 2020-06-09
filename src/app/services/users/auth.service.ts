@@ -55,10 +55,7 @@ export class AuthService {
   }
 
   getUserData(user: User): any {
-    return {
-      displayName: user.displayName,
-      email: user.email,
-    }
+    return user.toJSON()
   }
 
   signOut() {

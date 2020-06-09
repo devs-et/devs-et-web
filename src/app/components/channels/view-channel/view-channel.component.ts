@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import * as $ from 'rxjs/operators';
 
 @Component({
   selector: 'view-channel',
@@ -11,7 +11,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./view-channel.component.scss']
 })
 export class ViewChannelComponent implements OnInit {
-  channel$!: Observable<any>
+  $channel!: Observable<any>
 
   constructor(
     private route: ActivatedRoute,
@@ -19,12 +19,19 @@ export class ViewChannelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-     this.channel$ = this.route.paramMap.pipe(
-      switchMap((params: any) => {
+     this.$channel = this.route.paramMap.pipe(
+      $.switchMap((params: any) => {
         const id = params.get('id')
 
-        return this.db.doc(`channels/${id}`).valueChanges()
+        return this.db.doc(`channels/${id}`).valueChanges().pipe(
+          $.map((channel: object) => {
+            return {
+              ...channel,
+              id
+            }
+          })
+        )
       })
-    ) }
-
+    )
+  }
 }

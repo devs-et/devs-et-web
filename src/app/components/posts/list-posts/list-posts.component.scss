@@ -2,23 +2,62 @@
 
 .item-wrap {
   display: grid;
-  grid-template-columns: min-content auto;
-  gap: .5rem;
+  grid-template-columns: 3rem auto min-content;
   transition: .5s;
-
-  &:hover {
-    background: $dark2;
-  }
+  padding-bottom: .5rem;
 
   .item-vote-wrap {
     display: grid;
     justify-content: center;
     align-content: flex-start;
+    padding: .3rem;
+
+    button {
+      transition: .5s;
+
+      .remove-vote-icon {
+        display: none;
+      }
+
+      &.voted {
+        background: transparentize($accent, .95);
+
+        &:hover {
+          background: transparentize($warn, .6);
+
+          .remove-vote-icon {
+            display: inline-block;
+          }
+
+          .upvote-icon {
+            display: none;
+          }
+        }
+      }
+    }
 
     .item-vote-count {
       text-align: center;
       font-size: .7rem;
       font-weight: bold;
+    }
+  }
+
+  .item-menu-wrap {
+    visibility: hidden;
+    opacity: 0;
+    transition: .8s;
+    transition-timing-function: ease-in-out;
+    padding: .3rem;
+  }
+
+  &:hover,
+  &:focus {
+    background: $dark2;
+
+    .item-menu-wrap {
+      visibility: visible;
+      opacity: 1;
     }
   }
 
@@ -29,11 +68,11 @@
     text-align: left;
     background: none;
     cursor: pointer;
-    padding: .8rem 0 .5rem;
+    margin-top: .5rem;
 
     .item-title {
       color: #fff;
-      margin-bottom: .5rem;
+      margin-bottom: .8rem;
       font-size: 1rem;
     }
 

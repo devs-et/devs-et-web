@@ -13,13 +13,9 @@ $light: #9cb3c9;
 $light2: #b3cce6;
 $light3: #5f8ab4;
 
-$primary: #7256df;
-$accent: #7de760;
-
-$warn: adjust-color(
-  saturate(lighten($base, 20%), 15%),
-  $red: 100
-);
+$primary: #7256e8;
+$accent: #9dc960;
+$warn: #c370b3;
 
 $dark-text: #000000;
 $dark-primary-text: rgba($dark-text, 0.87);
@@ -110,6 +106,7 @@ $default-font: 'Eina';
     display: grid;
 
     .hero-content {
+      @extend .pad-when-full;
       padding: 3rem 0;
       display: grid;
       justify-content: start;
@@ -126,5 +123,13 @@ $default-font: 'Eina';
       font-weight: 600;
       color: $light-text;
     }
+  }
+}
+
+.pad-when-full {
+
+  @media (max-width: $content-width) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
