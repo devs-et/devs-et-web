@@ -5,7 +5,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth, User } from 'firebase/app';
 
 import { Observable, of } from 'rxjs';
-import { tap, map, switchMap } from 'rxjs/operators';
+import * as $ from 'rxjs/operators';
+import * as _ from 'ramda';
 import { SignInDialogService } from './sign-in-dialog.service';
 
 @Injectable({
@@ -23,7 +24,7 @@ export class AuthService {
   ) {
 
     auth.authState.pipe(
-      tap(user => {
+      $.tap(user => {
 
         this.$user = of(user)
         if (user) {
@@ -41,8 +42,8 @@ export class AuthService {
     this.$uid = of(localStorage.getItem('uid'))
   }
 
-  signInWithGithub() {
-    this.auth.signInWithPopup(new auth.GithubAuthProvider()).then(cred => {
+  async signInWithGithub() {
+    return await this.auth.signInWithPopup(new auth.GithubAuthProvider()).then(cred => {
       localStorage.setItem('uid', cred.user.uid)
       this.$uid = of(cred.user.uid)
       this.updateUser(cred.user.uid, this.getUserData(cred.user))
@@ -55,7 +56,12 @@ export class AuthService {
   }
 
   getUserData(user: User): any {
-    return user.toJSON()
+    const data = user.toJSON() as any
+
+    // TODO: get user data from github api
+    data.displayName = data.displayName || data.uid
+
+    return data
   }
 
   signOut() {

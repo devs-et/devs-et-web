@@ -8,6 +8,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignInDialogComponent } from './sign-in-dialog/sign-in-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { IonicModule } from '@ionic/angular';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MatIconModule,
     MatButtonModule,
     IonicModule.forRoot(),

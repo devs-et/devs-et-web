@@ -8,6 +8,7 @@ import { AuthService } from '../../../services/users/auth.service';
   styleUrls: ['./sign-in-dialog.component.scss']
 })
 export class SignInDialogComponent implements OnInit {
+  loading: boolean = false
 
   constructor(
     public dialogRef: MatDialogRef<SignInDialogComponent>,
@@ -21,6 +22,7 @@ export class SignInDialogComponent implements OnInit {
   }
 
   signInWithGithub() {
-    this.auth.signInWithGithub()
+    this.loading = true
+    this.auth.signInWithGithub().finally(() => this.loading = false)
   }
 }

@@ -36,7 +36,7 @@
             <div class="form-footer">
               <button
                 (click)="submitHandler()"
-                [disabled]="!form.valid || !form.active"
+                [disabled]="!form.valid || !form.active || posting"
                 type="submit"
                 class="submit-button"
                 mat-raised-button color="primary">

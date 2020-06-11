@@ -28,7 +28,7 @@
             class="user-menu-item"
             [routerLink]="['users', user.uid]"
           >
-            {{user.displayName}}
+            {{user.displayName || user.email}}
             <ion-icon name="person-circle-outline"></ion-icon>
           </button>
           <button mat-menu-item

@@ -30,6 +30,7 @@ export class CreatePostComponent implements OnInit {
   channelId: string;
   post: Post;
   form: any;
+  posting: boolean = false;
 
   contentEditor: any;
 
@@ -128,13 +129,15 @@ export class CreatePostComponent implements OnInit {
 
   async submitHandler() {
 
+    this.posting = true
+
     this.auth.auth.authState.subscribe(user => {
       if (user) {
         this.$channel.subscribe(channel => {
           if (channel) {
             this.savePost({
               uid: user.uid,
-              displayName: user.displayName,
+              displayName: user.displayName || user.email,
             }, {
               ...channel,
               id: this.channelId,
@@ -146,12 +149,12 @@ export class CreatePostComponent implements OnInit {
           desc: 'Please sign in to add a post'
         })
       }
+
+      this.posting = false
     })
   }
 
   async savePost(user, channel) {
-
-    console.log(user, channel)
 
     const formValue = {
       title: this.form.title,
@@ -163,17 +166,21 @@ export class CreatePostComponent implements OnInit {
     try {
       const now = new Date().getTime()
 
-      await this.db.collection('posts').add({
+      const post = {
         ...formValue,
         points: 1,
         channel: channel,
         channelId: channel.id,
         uid: user.uid,
         user: user,
-        trend: moment().add(7, 'days').unix,
+        trend: moment().add(7, 'days').valueOf(),
         createdAt: now,
         updatedAt: now,
-      }).then(doc => {
+      }
+
+      console.log(post)
+
+      await this.db.collection('posts').add(post).then(doc => {
 
         formValue.content = this.md.compile(formValue.content)
 

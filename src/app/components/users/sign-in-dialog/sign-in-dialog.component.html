@@ -3,13 +3,15 @@
     {{data.title || 'Sign In'}}
   </h1>
 
-  <div *ngIf="data.desc" class="desc">
+  <div *ngIf="data.desc && !loading" class="desc">
     {{data.desc}}
   </div>
 
-  <div *ngIf="data.error" class="mat-error">
+  <div *ngIf="data.error && !loading" class="mat-error">
     {{data.error}}
   </div>
+
+  <spinner *ngIf="loading"></spinner>
 
   <button
     class="sign-in-button"
