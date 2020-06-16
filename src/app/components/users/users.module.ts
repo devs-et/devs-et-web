@@ -9,6 +9,7 @@ import { SignInDialogComponent } from './sign-in-dialog/sign-in-dialog.component
 import { ProfileComponent } from './profile/profile.component';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    HttpClientModule,
     MatIconModule,
     MatButtonModule,
     IonicModule.forRoot(),

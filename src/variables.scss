@@ -1,4 +1,4 @@
-$base: saturate(#2e364a, 10%);
+$base: saturate(#293245, 10%);
 
 $dark: adjust-color(
   darken(saturate($base, 5%), 5%), $blue: 0
@@ -13,8 +13,8 @@ $light: #9cb3c9;
 $light2: #b3cce6;
 $light3: #5f8ab4;
 
-$primary: #7256e8;
-$accent: #9dc960;
+$primary: #5663E8;
+$accent:#68d391;
 $warn: #c370b3;
 
 $dark-text: #000000;

@@ -2,39 +2,43 @@
 
 $duration: 1s;
 
+$pad: 2px;
+$size: 12px;
+$gap: 12px;
+
 .spinner {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 13px;
+  width: ($pad*2) + ($size*3) + ($gap*2);
+  height: $size;
 }
 
 .spinner div {
   position: absolute;
-  width: 13px;
-  height: 13px;
-  border-radius: 3px;
-  background: $light-text;
+  width: $size;
+  height: $size;
+  border-radius: 15%;
+  background: $primary;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
 .spinner div:nth-child(1) {
-  left: 8px;
+  left: $pad;
   animation: dot1 $duration infinite;
 }
 
 .spinner div:nth-child(2) {
-  left: 8px;
+  left: $pad;
   animation: dot2 $duration infinite;
 }
 
 .spinner div:nth-child(3) {
-  left: 32px;
+  left: $pad + $size + $gap;
   animation: dot2 $duration infinite;
 }
 
 .spinner div:nth-child(4) {
-  left: 56px;
+  left: $pad + ($size*2) + ($gap*2);
   animation: dot3 $duration infinite;
 }
 
@@ -47,20 +51,20 @@ $duration: 1s;
   }
 }
 
+@keyframes dot2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(($size+$gap), 0);
+  }
+}
+
 @keyframes dot3 {
   0% {
     transform: scale(1);
   }
   100% {
     transform: scale(0);
-  }
-}
-
-@keyframes dot2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(1.5rem, 0);
   }
 }

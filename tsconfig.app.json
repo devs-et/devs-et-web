@@ -5,7 +5,8 @@
     "types": [
       "node"
     ],
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "allowSyntheticDefaultImports": true
   },
   "files": [
     "src/main.ts",

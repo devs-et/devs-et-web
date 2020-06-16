@@ -18,7 +18,11 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: `${paths.posts.view}/:name/:id`,
+    path: ':username',
+    component: ProfileComponent,
+  },
+  {
+    path: `posts/:name/:id`,
     component: ViewPostComponent,
   },
   {
@@ -26,7 +30,7 @@ export const routes: Routes = [
     component: CreatePostComponent,
   },
   {
-    path: `${paths.channels.list}`,
+    path: `channels/list`,
     component: ChannelsPageComponent,
   },
   {
@@ -37,11 +41,6 @@ export const routes: Routes = [
     path: `${paths.channels.view}/:id`,
     component: ViewChannelComponent,
   },
-  {
-    path: 'users/:id',
-    component: ProfileComponent,
-  },
-
 
   // WARNING: keep this at the end
   {

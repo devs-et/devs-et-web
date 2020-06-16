@@ -169,7 +169,7 @@ $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   transition: .3s;
 }
 
-.mat-stroked-button {
+.mat-stroked-button:enabled {
   border-color: $light-text;
 
   &:hover,

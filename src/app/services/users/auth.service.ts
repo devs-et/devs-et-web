@@ -8,6 +8,8 @@ import { Observable, of } from 'rxjs';
 import * as $ from 'rxjs/operators';
 import * as _ from 'ramda';
 import { SignInDialogService } from './sign-in-dialog.service';
+import { HttpClient } from '@angular/common/http';
+import { UsersCrudService } from './users-crud.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +21,19 @@ export class AuthService {
 
   constructor(
     public auth: AngularFireAuth,
-    public db: AngularFirestore,
     public dialog: SignInDialogService,
+    private userCrud: UsersCrudService,
   ) {
 
     auth.authState.pipe(
       $.tap(user => {
-
         this.$user = of(user)
+
         if (user) {
           localStorage.setItem('uid', user.uid)
-          this.updateUser(user.uid, this.getUserData(user))
+          this.userCrud.getUserData(user).subscribe(user => {
+            this.userCrud.updateUser(user.uid, user)
+          })
           this.$uid = of(user.uid)
         } else {
           localStorage.removeItem('uid')
@@ -46,7 +50,9 @@ export class AuthService {
     return await this.auth.signInWithPopup(new auth.GithubAuthProvider()).then(cred => {
       localStorage.setItem('uid', cred.user.uid)
       this.$uid = of(cred.user.uid)
-      this.updateUser(cred.user.uid, this.getUserData(cred.user))
+      this.userCrud.getUserData(cred.user).subscribe(user => {
+        this.userCrud.updateUser(cred.user.uid, user)
+      })
       this.dialog.close()
     }).catch(err => {
       this.dialog.open({
@@ -55,27 +61,8 @@ export class AuthService {
     })
   }
 
-  getUserData(user: User): any {
-    const data = user.toJSON() as any
-
-    // TODO: get user data from github api
-    data.displayName = data.displayName || data.uid
-
-    return data
-  }
-
   signOut() {
     this.auth.signOut()
     this.$uid = of(null)
-  }
-
-  updateUser(uid: string, data: any) {
-    this.db.collection('users').doc(uid).set(data, {
-      merge: true
-    })
-  }
-
-  getUser(uid: string): Observable<any> {
-    return this.db.doc(`users/${uid}`).valueChanges()
   }
 }
