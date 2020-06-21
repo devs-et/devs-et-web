@@ -18,10 +18,6 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: ':username',
-    component: ProfileComponent,
-  },
-  {
     path: `posts/:name/:id`,
     component: ViewPostComponent,
   },
@@ -42,7 +38,11 @@ export const routes: Routes = [
     component: ViewChannelComponent,
   },
 
-  // WARNING: keep this at the end
+  // !keep this at the end
+  {
+    path: ':username',
+    component: ProfileComponent,
+  },
   {
     path: '404',
     component: NotFoundComponent,

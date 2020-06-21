@@ -5,12 +5,17 @@
         <h1>Channels</h1>
       </div>
       <div class="hero-bottom">
-        <button
-          mat-raised-button
-          color="primary"
-          [routerLink]="['/', 'channels', 'create']">
-          Create Channel
-        </button>
+        <div class="hero-bottom-left">
+        </div>
+        <div class="hero-bottom-right">
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="['/', 'channels', 'create']">
+            <ion-icon name="plus-circle-outline"></ion-icon>
+            Suggest New Channel
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -32,6 +37,9 @@
           <mat-card-subtitle>
             {{channel.description}}
           </mat-card-subtitle>
+          <mat-card-actions>
+            <button mat-raised-button>Follow</button>
+          </mat-card-actions>
         </div>
       </mat-card>
     </div>

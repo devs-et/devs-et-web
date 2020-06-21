@@ -41,8 +41,4 @@ export class ListPostsComponent implements OnInit {
     this.posts$ = this.db.collection('posts', query)
       .valueChanges({ idField: 'id' })
   }
-
-  upVote(postId: string) {
-    this.crud.upVote(postId)
-  }
 }

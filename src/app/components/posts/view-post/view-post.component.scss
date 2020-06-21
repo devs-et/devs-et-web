@@ -62,8 +62,7 @@
           }
         }
 
-        // TODO: rename to menu button
-        .down-vote-button {
+        .menu-button {
           margin-top: .5rem;
 
           &:hover {
@@ -86,6 +85,22 @@
 
       .post-title {
         @extend .page-title;
+      }
+
+      .post-metadata {
+        color: $dark4;
+
+        a {
+          color: $dark4;
+          cursor: pointer;
+          border-radius: 3px;
+
+          &:hover,
+          &:focus {
+            background-color: $dark2;
+            color: $light;
+          }
+        }
       }
 
       .post-content {

@@ -8,7 +8,7 @@ import { AuthService } from '../../../services/users/auth.service';
 
 // import { graphql } from '@octokit/graphql';
 // import * as auth from '@octokit/auth';
-import { UsersCrudService } from '../../../services/users/users-crud.service';
+import { UserCrudService } from '../../../services/users/user-crud.service';
 
 @Component({
   selector: 'profile',
@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     private router: ActivatedRoute,
     public db: AngularFirestore,
     public auth: AuthService,
-    public userCrud: UsersCrudService,
+    public userCrud: UserCrudService,
   ) {
     this.$user = this.router.params.pipe(
       $.switchMap(params =>

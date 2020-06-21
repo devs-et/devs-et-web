@@ -1,6 +1,6 @@
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'firebase';
 
@@ -9,7 +9,7 @@ import * as $ from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersCrudService {
+export class UserCrudService {
 
   constructor(
     private http: HttpClient,
@@ -39,7 +39,11 @@ export class UsersCrudService {
   }
 
   getUser(uid: string): Observable<any> {
-    return this.db.doc(`users/${uid}`).valueChanges()
+    if (uid !== '') {
+      return this.db.collection('users').doc(uid).valueChanges()
+    } else {
+      throw new Error(`Invalid UID "${uid}"`)
+    }
   }
 
   getUserData(user: User): Observable<any> {
@@ -56,5 +60,4 @@ export class UsersCrudService {
       })
     )
   }
-
 }

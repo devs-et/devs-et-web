@@ -13,9 +13,9 @@ $light: #9cb3c9;
 $light2: #b3cce6;
 $light3: #5f8ab4;
 
-$primary: #5663E8;
-$accent:#68d391;
-$warn: #c370b3;
+$primary: #6a6aeb;
+$accent:#68b351;
+$warn: #c370a3;
 
 $dark-text: #000000;
 $dark-primary-text: rgba($dark-text, 0.87);
@@ -114,8 +114,27 @@ $default-font: 'Eina';
     }
 
     .hero-bottom {
+      @extend .pad-when-full;
       display: grid;
       grid-template-columns: auto auto;
+      padding-bottom: 1.5rem;
+
+      @media (max-width: $content-width) {
+        justify-content: center;
+      }
+
+      .hero-bottom-left,
+      .hero-bottom-right {
+        display: grid;
+      }
+
+      .hero-bottom-left {
+        justify-content: start;
+      }
+
+      .hero-bottom-right {
+        justify-content: end;
+      }
     }
 
     h1 {
@@ -124,6 +143,13 @@ $default-font: 'Eina';
       color: $light-text;
     }
   }
+}
+
+.no-posts {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 1rem;
+  color: $dark4;
 }
 
 .pad-when-full {

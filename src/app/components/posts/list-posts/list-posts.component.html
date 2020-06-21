@@ -8,7 +8,7 @@
         <button
           mat-icon-button
           [ngClass]="{'voted': crud.hasVoted(auth.$uid | async, post.votes)}"
-          (click)="upVote(post.id)"
+          (click)="crud.vote(post.id)"
         >
         <ion-icon class="upvote-icon"
           name="chevron-up-outline"></ion-icon>
@@ -28,15 +28,15 @@
           {{post.title}}
         </div>
 
-        <div class="item-content">
-          <span *ngIf="post.channel as channel">
-            #{{channel.name}} ·
-          </span>
-
-          <span *ngIf="post.user as user">
-            @{{user.displayName}} ·
-          </span>
-
+        <div class="item-metadata">
+          <a *ngIf="post.channel as channel">
+            #{{channel.name}}
+          </a>
+          <b>·</b>
+          <a *ngIf="post.user as user">
+            @{{user.username || user.displayName}}
+          </a>
+          <b>·</b>
           <span>
             {{post.createdAt | momentAgo}}
           </span>
@@ -60,5 +60,9 @@
         </mat-menu>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="(posts$ | async).length === 0" class="no-posts">
+    [No Posts]
   </div>
 </mat-action-list>

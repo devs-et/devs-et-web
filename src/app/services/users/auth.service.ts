@@ -9,7 +9,7 @@ import * as $ from 'rxjs/operators';
 import * as _ from 'ramda';
 import { SignInDialogService } from './sign-in-dialog.service';
 import { HttpClient } from '@angular/common/http';
-import { UsersCrudService } from './users-crud.service';
+import { UserCrudService } from './user-crud.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,8 @@ export class AuthService {
   constructor(
     public auth: AngularFireAuth,
     public dialog: SignInDialogService,
-    private userCrud: UsersCrudService,
+    private userCrud: UserCrudService,
+    private db: AngularFirestore,
   ) {
 
     auth.authState.pipe(
@@ -64,5 +65,13 @@ export class AuthService {
   signOut() {
     this.auth.signOut()
     this.$uid = of(null)
+  }
+
+  getUser(uid: string): Observable<any> {
+    if (uid !== '') {
+      return this.db.collection('users').doc(uid).valueChanges()
+    } else {
+      throw new Error(`Invalid UID "${uid}"`)
+    }
   }
 }

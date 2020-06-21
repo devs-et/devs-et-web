@@ -47,14 +47,14 @@
       </header>
 
       <div class="post-metadata">
-        <span class="post-channel" *ngIf="post.channel as channel">
-          #{{channel.name}} ·
-        </span>
-
-        <span class="post-user" *ngIf="post.user as user">
-          @{{user.displayName}} ·
-        </span>
-
+        <a class="post-channel" *ngIf="post.channel as channel">
+          #{{channel.name}}
+        </a>
+        <b>·</b>
+        <a class="post-user" *ngIf="post.user as user">
+          @{{user.username || user.displayName}}
+        </a>
+        <b>·</b>
         <span class="post-date">
           {{ post.createdAt | date }}
         </span>

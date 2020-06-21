@@ -11,6 +11,16 @@
 
     .main-content {
       @extend .outline-wrap;
+
+      .main-content-top {
+        display: grid;
+
+        button {
+          padding: 1rem;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
     }
   }
 }

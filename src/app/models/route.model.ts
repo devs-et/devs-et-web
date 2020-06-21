@@ -4,7 +4,7 @@ export const paths = {
     view: 'posts',
   },
   channels: {
-    list: 'channels',
+    list: 'channels/list',
     view: 'channels',
     create: 'channels/create',
   },

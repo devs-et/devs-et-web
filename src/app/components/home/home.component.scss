@@ -16,6 +16,7 @@
   }
 
   .side-container {
+    @extend .pad-when-full;
     display: grid;
     align-content: flex-start;
 

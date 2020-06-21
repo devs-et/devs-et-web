@@ -9,23 +9,26 @@
       </div>
 
       <div class="hero-bottom">
-        <button mat-raised-button color="primary">Join</button>
+        <div class="hero-bottom-left">
+          <button mat-raised-button color="primary">Join</button>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="content">
     <div class="main-content">
-      <button
-        [routerLink]="['', 'channels', channel.id, 'add-post']"
-        mat-flat-button
-        class="add-button"
-        color="accent">
-        <ion-icon name="add"></ion-icon>
-        Add Post
-      </button>
+      <div class="main-content-top">
+        <button
+          [routerLink]="['', 'channels', channel.id, 'add-post']"
+          mat-flat-button
+          class="add-button">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          Add Post
+        </button>
+      </div>
       <list-posts [channel-id]="channel.id"></list-posts>
     </div>
-    <div class="side-bar">b</div>
+    <div class="side-bar"></div>
   </div>
 </div>

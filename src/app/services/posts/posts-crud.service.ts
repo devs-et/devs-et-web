@@ -7,9 +7,18 @@ import * as $ from 'rxjs/operators';
 import * as _ from 'ramda';
 import { Observable } from 'rxjs';
 
+interface Vote {
+  uid: string
+  direction: 'up' | 'down'
+  value: number
+  createdAt: number
+}
+
 type PostCrudActions =
   'upvote' | 'remove-upvote' | 'downvote' | 'remove-downvote' |
   'report' | 'remove-report' | 'edit' | 'delete'
+
+const VOTE_VALUE = 3600*3 // 3 hours
 
 @Injectable({
   providedIn: 'root'
@@ -23,19 +32,81 @@ export class PostsCrudService {
 
   }
 
-  vote(id: string, direction: 'up' | 'down' | 'report' | 'reset' = 'up') {
-    this.auth.$uid.subscribe(user => {
-      if (user) {
-        console.log(direction)
+  vote(
+    id: string,
+    direction: 'up' | 'down' | 'reset' = 'up',
+  ) {
+    this.auth.$uid.subscribe(uid => {
+      if (uid) {
+        this.db.doc(`posts/${id}`).get().subscribe(doc => {
+          const post = doc.data()
+          const postId = doc.id
+
+          if (doc.exists) {
+            switch (direction) {
+              case 'up': {
+                if (uid !== postId) {
+                  if (this.hasVoted(uid, post.votes)) {
+                    //*check vote type
+                    const vote = _.find(
+                      _.propEq('uid', uid),
+                      post.votes
+                    ) as any
+
+                    if (vote.direction === 'up') {
+
+                      const votes = _.difference([vote], post.votes) || []
+
+                      this.db.doc(`posts/${postId}`).update({
+                        votes
+                      })
+                      //?maybe reset the vote?
+                    }
+                  } else {
+                    this.registerVote(uid, postId, 'up', post)
+                  }
+                }
+              }
+              case 'down': {
+
+              }
+
+              default:
+                break;
+            }
+          }
+        })
       } else {
         this.auth.dialog.open({
-          desc: `Please sign in to ${direction === 'report' ? 'report' : 'vote'}`
+          desc: `Please sign in to vote`
         })
       }
     })
   }
 
-  async upVote(id: string) {
+  private registerVote(
+    uid: string,
+    postId: string,
+    direction: 'up' | 'down' | 'reset',
+    post: any
+  ) {
+
+    const vote: Vote = {
+      uid,
+      direction,
+      value: VOTE_VALUE,
+      createdAt: new Date().getTime()
+    }
+
+    const votes = _.append(vote, post.votes)
+
+    this.db.doc(`posts/${postId}`).update({
+      votes
+    })
+
+  }
+
+  async upVoteDELETEME(id: string) {
 
     this.auth.auth.authState.subscribe(user => {
       if (user) {
@@ -83,6 +154,7 @@ export class PostsCrudService {
     })
   }
 
+
   hasVoted(uid: string, votes: any[]): boolean {
     return !votes
       ? false
@@ -92,6 +164,31 @@ export class PostsCrudService {
       )
         ? true
         : false
+  }
+
+  refreshPost(id: string) {
+    console.log('refresh', id)
+    this.db.doc(`posts/${id}`).get().subscribe(doc => {
+      const post = doc.data()
+
+
+      this.db.doc(`users/${post.uid}`).get().subscribe(doc => {
+        const user = doc.data()
+
+        if (doc.exists) {
+          const postUser = {
+            displayName: user.displayName,
+            uid: user.uid,
+            username: user.githubUser?.login || user.uid
+          }
+
+          console.log(postUser)
+          this.db.doc(`posts/${id}`).update({
+            user: postUser
+          })
+        }
+      })
+    })
   }
 
   canDo(post, action: PostCrudActions): Observable<boolean> {

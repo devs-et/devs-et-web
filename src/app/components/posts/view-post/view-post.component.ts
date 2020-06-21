@@ -24,7 +24,6 @@ export class ViewPostComponent implements OnInit {
     public crud: PostsCrudService,
     public auth: AuthService,
   ) {
-
   }
 
   ngOnInit(): void {
@@ -32,6 +31,7 @@ export class ViewPostComponent implements OnInit {
       $.switchMap((params: any) => {
         this.id = params.get('id')
 
+        this.crud.refreshPost(this.id)
         return this.db.doc(`posts/${this.id}`).valueChanges()
       })
     )

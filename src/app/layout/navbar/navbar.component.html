@@ -13,11 +13,11 @@
 
       <span
         [matMenuTriggerFor]="userMenu"
-        *ngIf="auth.$user | async as user; else signInButton">
+        *ngIf="auth.$user | async as authUser; else signInButton">
 
         <img
           class="avatar"
-          [src]="user.photoURL"
+          [src]="authUser.photoURL"
           onerror="this.src='assets/graphics/empty.png'"
           mat-card-avatar>
 
@@ -26,9 +26,9 @@
           #userMenu="matMenu">
           <button mat-menu-item
             class="user-menu-item"
-            [routerLink]="['users', user.uid]"
+            (click)="userProfile(authUser.uid)"
           >
-            {{user.displayName || user.email}}
+            {{authUser.displayName || authUser.email}}
             <ion-icon name="person-circle-outline"></ion-icon>
           </button>
           <button mat-menu-item

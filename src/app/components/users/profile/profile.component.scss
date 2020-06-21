@@ -39,5 +39,22 @@
         font-size: 1.5rem;
       }
     }
+
+    .hero-bottom {
+      justify-items: start;
+    }
+  }
+
+  .content {
+    @extend .left-content;
+    @extend .page-content;
+
+    .main-content {
+      @extend .outline-wrap;
+    }
+
+    .no-activity {
+      @extend .no-posts;
+    }
   }
 }

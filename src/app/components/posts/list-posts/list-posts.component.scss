@@ -76,11 +76,22 @@
       font-size: 1rem;
     }
 
-    .item-content {
+    .item-metadata {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-right: 2rem;
+      color: $light;
+
+      a {
+        color: $light;
+        border-radius: 3px;
+
+        &:hover,
+        &:focus {
+          background-color: $dark3;
+          color: $light2;
+        }
+      }
     }
   }
 }
