@@ -9,14 +9,14 @@ import { Observable } from 'rxjs';
 
 interface Vote {
   uid: string
-  direction: 'up' | 'down'
+  direction: 'up' | 'down' | 'reset'
   value: number
   createdAt: number
 }
 
 type PostCrudActions =
   'upvote' | 'remove-upvote' | 'downvote' | 'remove-downvote' |
-  'report' | 'remove-report' | 'edit' | 'delete'
+  'reset-vote' | 'report' | 'remove-report' | 'edit' | 'delete'
 
 const VOTE_VALUE = 3600*3 // 3 hours
 
@@ -43,37 +43,7 @@ export class PostsCrudService {
           const postId = doc.id
 
           if (doc.exists) {
-            switch (direction) {
-              case 'up': {
-                if (uid !== postId) {
-                  if (this.hasVoted(uid, post.votes)) {
-                    //*check vote type
-                    const vote = _.find(
-                      _.propEq('uid', uid),
-                      post.votes
-                    ) as any
-
-                    if (vote.direction === 'up') {
-
-                      const votes = _.difference([vote], post.votes) || []
-
-                      this.db.doc(`posts/${postId}`).update({
-                        votes
-                      })
-                      //?maybe reset the vote?
-                    }
-                  } else {
-                    this.registerVote(uid, postId, 'up', post)
-                  }
-                }
-              }
-              case 'down': {
-
-              }
-
-              default:
-                break;
-            }
+            this.registerVote(uid, postId, direction, post)
           }
         })
       } else {
@@ -90,70 +60,53 @@ export class PostsCrudService {
     direction: 'up' | 'down' | 'reset',
     post: any
   ) {
+    const multiplier = direction === 'down' ? -1 : 1
 
     const vote: Vote = {
       uid,
       direction,
-      value: VOTE_VALUE,
+      value: VOTE_VALUE * multiplier,
       createdAt: new Date().getTime()
     }
 
-    const votes = _.append(vote, post.votes)
+    if (uid !== post.uid) {
+      const foundVote = _.find(
+        _.propEq('uid', uid),
+        post.votes
+      ) as any
 
-    this.db.doc(`posts/${postId}`).update({
-      votes
-    })
+      if (
+        (foundVote && foundVote.direction === direction)
+        || direction === 'reset'
+      ) {
+        const votes = _.difference([foundVote], post.votes) || []
+        const points = _.filter(_.propEq('direction', 'up'), votes).length
+          - _.filter(_.propEq('direction', 'down'), votes).length + 1
+        const trend = post.createdAt + (VOTE_VALUE * points)
 
-  }
-
-  async upVoteDELETEME(id: string) {
-
-    this.auth.auth.authState.subscribe(user => {
-      if (user) {
-        this.db.collection('posts').doc(id).get().subscribe(doc => {
-          const data = doc.data()
-          const value = 3600*3 // 3 hours
-
-          // if (data.uid === user.uid) {
-          if (data.uid !== user.uid) {
-            return false
-          } else if (this.hasVoted(user.uid, data.votes)) {
-            console.log('already voted')
-            console.log('remove vote')
-
-            const vote = _.find(
-              _.propEq('uid', user.uid),
-              data.votes
-            ) as any
-
-            const votes = _.difference([vote], data.votes) || []
-
-            data.points = (data.points || 2) - 1
-            data.trend = (data.trend || data.createdAt) - vote.value || 0
-            data.votes = votes
-
-            this.db.doc(`posts/${id}`).set(data, { merge: true })
-          } else {
-            console.log('adding vote')
-            data.points = (data.points || 1) + 1
-            data.trend = (data.trend || data.createdAt) + value
-            data.votes = _.append({
-              uid: user.uid,
-              value,
-            }, (data.votes as any[] || []))
-          }
-
-          this.db.doc(`posts/${id}`).set(data, { merge: true })
-
+        this.db.doc(`posts/${postId}`).update({
+          trend,
+          points,
+          votes,
         })
       } else {
-        this.auth.dialog.open({
-          desc: "You need to sign in to vote"
+
+        const resetVotes = foundVote
+          ? _.difference([foundVote], post.votes) || []
+          : post.votes
+        const votes = _.append(vote, resetVotes)
+        const points = _.filter(_.propEq('direction', 'up'), votes).length
+          - _.filter(_.propEq('direction', 'down'), votes).length + 1
+        const trend = post.createdAt + (VOTE_VALUE * points)
+
+        this.db.doc(`posts/${postId}`).update({
+          trend,
+          points,
+          votes
         })
       }
-    })
+    }
   }
-
 
   hasVoted(uid: string, votes: any[]): boolean {
     return !votes
@@ -166,8 +119,16 @@ export class PostsCrudService {
         : false
   }
 
+  getVoteDirection(uid: string, votes: any[]): 'up' | 'down' | null {
+    const found = _.find(
+      _.propEq('uid', uid),
+      votes
+    )
+
+    return found ? found.direction : null
+  }
+
   refreshPost(id: string) {
-    console.log('refresh', id)
     this.db.doc(`posts/${id}`).get().subscribe(doc => {
       const post = doc.data()
 
@@ -198,13 +159,16 @@ export class PostsCrudService {
           return false
         }
 
+        const dir = this.getVoteDirection(uid, post.votes)
+
         switch (action) {
           case 'delete': return uid === post.uid
           case 'edit': return uid === post.uid
           case 'upvote': return uid !== post.uid
           case 'downvote': return uid !== post.uid
-          case 'remove-upvote': return uid !== post.uid
-          case 'remove-downvote': return uid !== post.uid
+          case 'reset-vote': return uid !== post.uid  && dir !== null
+          case 'remove-upvote': return uid !== post.uid  && dir === 'up'
+          case 'remove-downvote': return uid !== post.uid && dir === 'down'
           case 'report': return uid !== post.uid
           default: return false
         }

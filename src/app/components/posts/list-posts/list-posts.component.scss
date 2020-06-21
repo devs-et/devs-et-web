@@ -19,8 +19,14 @@
         display: none;
       }
 
-      &.voted {
-        background: transparentize($accent, .95);
+      &.downvoted {
+        background: transparentize($warn, .9);
+        color: $warn;
+      }
+
+      &.upvoted {
+        background: transparentize($accent, .9);
+        color: $accent;
 
         &:hover {
           background: transparentize($warn, .6);

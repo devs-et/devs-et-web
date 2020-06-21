@@ -7,7 +7,12 @@
       <div class="item-vote-wrap">
         <button
           mat-icon-button
-          [ngClass]="{'voted': crud.hasVoted(auth.$uid | async, post.votes)}"
+          [ngClass]="{
+            'upvoted':
+              crud.getVoteDirection(auth.$uid | async, post.votes) === 'up',
+            'downvoted':
+              crud.getVoteDirection(auth.$uid | async, post.votes) === 'down'
+          }"
           (click)="crud.vote(post.id)"
         >
         <ion-icon class="upvote-icon"

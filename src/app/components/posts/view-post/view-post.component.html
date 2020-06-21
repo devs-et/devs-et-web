@@ -5,8 +5,12 @@
         <button
           mat-fab
           [ngClass]="{
-            'voted': crud.hasVoted(auth.$uid | async, post.votes),
-            'remove-vote': crud.canDo(post, 'remove-upvote') | async
+            'upvoted':
+              crud.getVoteDirection(auth.$uid | async, post.votes) === 'up',
+            'downvoted':
+              crud.getVoteDirection(auth.$uid | async, post.votes) === 'down',
+            'remove-vote':
+              crud.getVoteDirection(auth.$uid | async, post.votes) === 'up'
           }"
           (click)="crud.vote(id)"
           color="accent"

@@ -32,7 +32,16 @@ export class ViewPostComponent implements OnInit {
         this.id = params.get('id')
 
         this.crud.refreshPost(this.id)
-        return this.db.doc(`posts/${this.id}`).valueChanges()
+        return this.db.doc(`posts/${this.id}`).valueChanges().pipe(
+          $.map((doc: any) => {
+            const id = this.id
+
+            return {
+              ...doc,
+              id
+            }
+          })
+        )
       })
     )
   }

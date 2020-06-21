@@ -1,15 +1,20 @@
 <div [ngClass]="{'before': position === 'before'}">
   <button
-    *ngIf="crud.canDo(post, 'remove-upvote') | async"
+    *ngIf="crud.canDo(post, 'reset-vote') | async"
+    (click)="crud.vote(post.id, 'reset')"
     mat-menu-item
     class="vote-menu-item">
     <ion-icon class="left-icon" name="remove-circle-outline"></ion-icon>
-    Remove Upvote
+    <span *ngIf="crud.getVoteDirection(auth.$uid | async, post.votes) === 'up'; else removeDownvote">
+      Remove Upvote
+    </span>
+    <ng-template #removeDownvote>Remove Downvote</ng-template>
     <ion-icon class="right-icon" name="remove-circle-outline"></ion-icon>
   </button>
 
   <button
     *ngIf="crud.canDo(post, 'downvote') | async"
+    (click)="crud.vote(post.id, 'down')"
     mat-menu-item
     class="vote-menu-item">
     <ion-icon class="left-icon" name="chevron-down-circle-outline"></ion-icon>

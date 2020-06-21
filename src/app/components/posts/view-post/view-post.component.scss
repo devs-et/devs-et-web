@@ -32,7 +32,7 @@
           }
 
           &:hover,
-          &.voted {
+          &.upvoted {
             border-color: transparentize($accent, .98);
             color: $light-text;
             background: transparentize($accent, .6);
@@ -43,7 +43,11 @@
             background: transparentize($accent, .4)
           }
 
-          &.voted.remove-vote {
+          &.downvoted {
+            background: transparentize($warn, .6);
+          }
+
+          &.upvoted.remove-vote {
             &:hover {
               background: transparentize($warn, .6);
 
