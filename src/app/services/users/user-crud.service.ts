@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'firebase';
 
 import * as $ from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,12 @@ export class UserCrudService {
     })
   }
 
+  refreshUser(user: any) {
+    this.mergeGithubData(user).subscribe(data => {
+      this.updateUser(user.uid, data)
+    })
+  }
+
   getUser(uid: string): Observable<any> {
     if (uid !== '') {
       return this.db.collection('users').doc(uid).valueChanges()
@@ -46,16 +53,18 @@ export class UserCrudService {
     }
   }
 
-  getUserData(user: User): Observable<any> {
-    const data = user.toJSON() as any
+  mergeGithubData(data: any): Observable<any> {
 
-    const uid = data.providerData[0].uid
+    const uid = data.githubUid || data.providerData[0].uid
 
     return this.githubUserByUid(uid).pipe(
       $.map(user => {
         return {
           ...data,
           githubUser: user,
+          username: user.login,
+          displayName: user.name,
+          githubUid: uid,
         }
       })
     )

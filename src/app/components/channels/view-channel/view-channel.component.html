@@ -10,7 +10,27 @@
 
       <div class="hero-bottom">
         <div class="hero-bottom-left">
-          <button mat-raised-button color="primary">Join</button>
+          <ng-container
+            *ngIf="auth.$user | async as user">
+            <button
+              *ngIf="!channelCrud.isFollowing(user.uid, channel); else leaveChannel"
+              (click)="channelCrud.follow(user.uid, channel.id)"
+              mat-raised-button
+              color="primary">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Join Channel
+            </button>
+
+            <ng-template #leaveChannel>
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="channelCrud.unfollow(user.uid, channel.id)">
+                <ion-icon name="close-circle-outline"></ion-icon>
+                Leave Channel
+              </button>
+            </ng-template>
+          </ng-container>
         </div>
       </div>
     </div>

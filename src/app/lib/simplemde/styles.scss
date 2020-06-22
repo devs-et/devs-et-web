@@ -13,7 +13,7 @@
     &:hover,
     &.active {
       background: $dark3;
-      color: $light;
+      color: $light2;
     }
   }
 
@@ -25,7 +25,7 @@
 .CodeMirror {
   background: $dark2;
   border: none;
-  color: $light2;
+  color: $light;
   border-radius: 0;
   font-size: 1.1rem;
 
@@ -36,7 +36,7 @@
   .CodeMirror-lines {
     .CodeMirror-cursors {
       .CodeMirror-cursor {
-        border-color: $light2;
+        border-color: $light;
       }
     }
 

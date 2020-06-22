@@ -1,3 +1,15 @@
-<h1>
-  hello world
-</h1>
+<div class="wrap">
+  <h1>Suggest New Channel</h1>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Channel Name" [(ngModel)]="name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Channel Description" [(ngModel)]="description">
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="create()"
+    color="primary">Suggest Channel</button>
+</div>

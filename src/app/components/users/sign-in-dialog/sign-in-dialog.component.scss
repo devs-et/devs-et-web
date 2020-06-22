@@ -1,31 +1,7 @@
 @import '../../../../variables.scss';
 
 .wrap {
-  display: grid;
-  justify-content: center;
-  justify-items: center;
-
-  h1 {
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 1.2rem;
-    color: $dark4;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .desc {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .mat-error {
-    margin-bottom: 2rem;
-  }
-
-  spinner {
-    margin-bottom: 2rem;
-  }
+  @extend .dialog;
 
   .sign-in-button {
     padding: .5rem 1rem;

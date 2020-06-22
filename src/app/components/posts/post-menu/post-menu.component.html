@@ -41,6 +41,9 @@
 
   <button
     *ngIf="crud.canDo(post, 'delete') | async"
+    (click)="deleteDialog.open({
+      postId: post.id
+    })"
     mat-menu-item
     class="warn vote-menu-item">
     <ion-icon class="left-icon" name="trash-outline"></ion-icon>

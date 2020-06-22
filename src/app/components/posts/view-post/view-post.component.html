@@ -51,11 +51,17 @@
       </header>
 
       <div class="post-metadata">
-        <a class="post-channel" *ngIf="post.channel as channel">
-          #{{channel.name}}
+        <a
+          class="post-channel"
+          [routerLink]="['', 'channels', channel.id]"
+          *ngIf="post.channel as channel">
+          &nbsp;#{{channel.id}}
         </a>
         <b>·</b>
-        <a class="post-user" *ngIf="post.user as user">
+        <a
+          [routerLink]="['', user.username]"
+          class="post-user"
+          *ngIf="post.user as user">
           @{{user.username || user.displayName}}
         </a>
         <b>·</b>

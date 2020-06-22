@@ -8,6 +8,22 @@
       grid-template-columns: auto auto;
       align-items: center;
 
+      .user-info {
+        h1 {
+          vertical-align: text-bottom;
+
+          a {
+            color: $dark4;
+            text-decoration: none;
+            border-radius: 5px;
+
+            &:hover {
+              background-color: $dark3;
+            }
+          }
+        }
+      }
+
       @media (max-width: $content-width) {
         grid-auto-flow: row;
         grid-template-columns: none;

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../../services/users/auth.service';
 import { PostsCrudService } from '../../../services/posts/posts-crud.service';
+import { DeleteDialogService } from '../../../services/posts/delete-dialog.service';
 
 @Component({
   selector: 'post-menu',
@@ -14,9 +15,9 @@ export class PostMenuComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public crud: PostsCrudService,
+    public deleteDialog: DeleteDialogService,
   ) { }
 
   ngOnInit(): void {
   }
-
 }

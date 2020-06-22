@@ -19,16 +19,27 @@ export class ProfileComponent implements OnInit {
   $user: Observable<any>
 
   constructor(
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     public db: AngularFirestore,
     public auth: AuthService,
     public userCrud: UserCrudService,
   ) {
-    this.$user = this.router.params.pipe(
+    this.$user = this.route.params.pipe(
       $.switchMap(params =>
         this.userCrud.getUserByUsername(params.username)
       ),
-      $.tap(console.log)
+      $.tap(user => {
+        if (user) {
+          auth.$uid.subscribe(uid => {
+            if (uid) {
+              this.userCrud.refreshUser(user)
+            }
+          })
+        } else {
+          router.navigate(['/'])
+        }
+      })
     )
 
     this.gql()

@@ -34,11 +34,14 @@
         </div>
 
         <div class="item-metadata">
-          <a *ngIf="post.channel as channel">
-            #{{channel.name}}
+          <a [routerLink]="['', 'channels', channel.id]"
+            *ngIf="post.channel as channel">
+            &nbsp;#{{channel.id}}
           </a>
           <b>·</b>
-          <a *ngIf="post.user as user">
+          <a
+            [routerLink]="['', user.username]"
+            *ngIf="post.user as user">
             @{{user.username || user.displayName}}
           </a>
           <b>·</b>
@@ -67,7 +70,7 @@
     </div>
   </div>
 
-  <div *ngIf="(posts$ | async).length === 0" class="no-posts">
+  <div *ngIf="(posts$ | async)?.length === 0" class="no-posts">
     [No Posts]
   </div>
 </mat-action-list>

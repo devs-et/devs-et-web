@@ -20,6 +20,9 @@ export class NavbarComponent implements OnInit {
     public userCrud: UserCrudService,
     private router: Router,
   ) {
+    this.auth.$uid.subscribe(uid => {
+      this.$user = userCrud.getUser(uid)
+    })
   }
 
   ngOnInit(): void {

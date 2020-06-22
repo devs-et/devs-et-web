@@ -13,6 +13,9 @@ import { ViewChannelComponent } from './view-channel/view-channel.component';
 import { CreateChannelComponent } from './create-channel/create-channel.component';
 import { PostModule } from '../posts/post.module';
 import { IonicModule } from '@ionic/angular';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { IonicModule } from '@ionic/angular';
     MatButtonModule,
     MatCardModule,
     MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
   ],
   exports: [
     ListChannelsComponent,

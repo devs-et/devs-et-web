@@ -9,7 +9,16 @@
               alt="" onerror="this.src='assets/graphics/empty.png'">
           </div>
           <div class="user-info">
-            <h1>{{user.displayName}}</h1>
+            <h1>
+              {{user.displayName}}
+              <a
+                href="https://github.com/settings/profile#user_profile_name"
+                target="__blank"
+                *ngIf="(auth.$uid | async) === user.uid && !user.displayName">
+                Add Your Name
+                <ion-icon name="open-outline"></ion-icon>
+              </a>
+            </h1>
 
             <div class="username">
               @{{user.githubUser?.login}}
@@ -18,7 +27,23 @@
         </div>
 
         <div class="hero-bottom">
-          <button mat-raised-button color="primary">Follow</button>
+          <button
+            *ngIf="(auth.$uid | async) !== user.uid"
+            mat-raised-button
+            color="primary">
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+            Follow
+          </button>
+
+          <a
+            href="https://github.com/settings/profile"
+            target="__blank"
+            *ngIf="(auth.$uid | async) === user.uid"
+            color="primary"
+            mat-raised-button>
+            <ion-icon name="create-outline"></ion-icon>
+            Edit Profile
+          </a>
         </div>
       </div>
     </div>

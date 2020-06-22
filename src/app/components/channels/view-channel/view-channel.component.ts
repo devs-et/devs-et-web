@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 import * as $ from 'rxjs/operators';
+import { AuthService } from '../../../services/users/auth.service';
+import { ChannelCrudService } from '../../../channels/channel-crud.service';
 
 @Component({
   selector: 'view-channel',
@@ -16,6 +18,8 @@ export class ViewChannelComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private db: AngularFirestore,
+    public auth: AuthService,
+    public channelCrud: ChannelCrudService,
   ) { }
 
   ngOnInit(): void {

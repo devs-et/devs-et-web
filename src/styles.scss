@@ -167,6 +167,10 @@ $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   min-width: 3em;
   line-height: 36.4px;
   transition: .3s;
+
+  ion-icon {
+    font-size: 1.2rem;
+  }
 }
 
 .mat-stroked-button:enabled {
@@ -285,12 +289,10 @@ input {
 
 *::-webkit-scrollbar {
   width: 10px;
-  margin: .3rem;
 }
 
 *::-webkit-scrollbar-track {
   background: none;
-  margin: .3rem;
 }
 
 *::-webkit-scrollbar-thumb {

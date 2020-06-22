@@ -163,12 +163,17 @@ export class CreatePostComponent implements OnInit {
 
     this.form.active = false
 
+    if (!channel.approved) {
+      return false
+    }
+
     try {
       const now = new Date().getTime()
 
       const post = {
         ...formValue,
         points: 1,
+        votes: [],
         channel: channel,
         channelId: channel.id,
         uid: user.uid,
@@ -177,8 +182,6 @@ export class CreatePostComponent implements OnInit {
         createdAt: now,
         updatedAt: now,
       }
-
-      console.log(post)
 
       await this.db.collection('posts').add(post).then(doc => {
 

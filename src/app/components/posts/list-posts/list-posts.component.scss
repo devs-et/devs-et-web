@@ -25,7 +25,7 @@
       }
 
       &.upvoted {
-        background: transparentize($accent, .9);
+        background: transparentize($light, .95);
         color: $accent;
 
         &:hover {
@@ -86,16 +86,17 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: $light;
+      color: $light2;
 
       a {
-        color: $light;
-        border-radius: 3px;
+        color: $light2;
+        text-decoration: none;
 
         &:hover,
         &:focus {
+          box-shadow: 0 3px 0 $dark4;
           background-color: $dark3;
-          color: $light2;
+          color: $light-text;
         }
       }
     }

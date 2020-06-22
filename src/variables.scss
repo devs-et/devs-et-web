@@ -9,8 +9,8 @@ $dark2: desaturate(lighten($dark, 5%), 2%);
 $dark3: desaturate(lighten($dark2, 15%), 5%);
 $dark4: desaturate(lighten($dark3, 15%), 5%);
 
-$light: #9cb3c9;
-$light2: #b3cce6;
+$light: #b3cce6;
+$light2: #9cb3c9;
 $light3: #5f8ab4;
 
 $primary: #6a6aeb;
@@ -157,5 +157,28 @@ $default-font: 'Eina';
   @media (max-width: $content-width) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+}
+
+.dialog {
+  display: grid;
+  text-align: center;
+
+  h1 {
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    color: $dark4;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .desc {
+    font-size: 1rem;
+  }
+
+  button {
+    margin-top: 2rem;
   }
 }

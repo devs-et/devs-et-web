@@ -18,7 +18,7 @@ type PostCrudActions =
   'upvote' | 'remove-upvote' | 'downvote' | 'remove-downvote' |
   'reset-vote' | 'report' | 'remove-report' | 'edit' | 'delete'
 
-const VOTE_VALUE = 3600*3 // 3 hours
+const VOTE_VALUE = 3600*6 // 6 hours
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +72,7 @@ export class PostsCrudService {
     if (uid !== post.uid) {
       const foundVote = _.find(
         _.propEq('uid', uid),
-        post.votes
+        post.votes || []
       ) as any
 
       if (
@@ -122,7 +122,7 @@ export class PostsCrudService {
   getVoteDirection(uid: string, votes: any[]): 'up' | 'down' | null {
     const found = _.find(
       _.propEq('uid', uid),
-      votes
+      votes || []
     )
 
     return found ? found.direction : null
@@ -164,9 +164,9 @@ export class PostsCrudService {
         switch (action) {
           case 'delete': return uid === post.uid
           case 'edit': return uid === post.uid
-          case 'upvote': return uid !== post.uid
-          case 'downvote': return uid !== post.uid
-          case 'reset-vote': return uid !== post.uid  && dir !== null
+          case 'upvote': return uid !== post.uid && dir === 'up'
+          case 'downvote': return uid !== post.uid && dir !== 'down'
+          case 'reset-vote': return uid !== post.uid && dir !== null
           case 'remove-upvote': return uid !== post.uid  && dir === 'up'
           case 'remove-downvote': return uid !== post.uid && dir === 'down'
           case 'report': return uid !== post.uid
@@ -174,5 +174,9 @@ export class PostsCrudService {
         }
       })
     )
+  }
+
+  async delete(uid: string) {
+    return this.db.doc(`posts/${uid}`).delete()
   }
 }

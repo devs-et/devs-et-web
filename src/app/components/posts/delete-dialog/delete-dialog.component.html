@@ -1,0 +1,17 @@
+<div class="wrap">
+  <h1>
+    {{data.title || 'Delete Post'}}
+  </h1>
+
+  <div class="desc">
+    {{data.desc || 'Are you sure you want to delete the post?'}}
+  </div>
+
+  <button
+    mat-flat-button
+    color="warn"
+    (click)="delete(data.postId)">
+    <ion-icon name="trash-outline"></ion-icon>
+    Delete
+  </button>
+</div>

@@ -21,6 +21,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { IonicModule } from '@ionic/angular';
 import { MatMenuModule } from '@angular/material/menu';
 import { PostMenuComponent } from './post-menu/post-menu.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PostMenuComponent } from './post-menu/post-menu.component';
     ListPostsComponent,
     ViewPostComponent,
     PostMenuComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,

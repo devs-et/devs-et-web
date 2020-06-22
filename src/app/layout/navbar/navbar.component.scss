@@ -48,7 +48,7 @@ nav {
   a {
     display: grid;
     align-content: center;
-    opacity: .8;
+    opacity: .6;
     transition: .3s;
 
     #logo {
@@ -56,7 +56,7 @@ nav {
     }
 
     &:hover {
-      opacity: 1;
+      opacity: .8;
     }
   }
 }

@@ -43,7 +43,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     NotFoundComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,

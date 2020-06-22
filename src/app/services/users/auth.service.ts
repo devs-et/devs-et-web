@@ -32,7 +32,7 @@ export class AuthService {
 
         if (user) {
           localStorage.setItem('uid', user.uid)
-          this.userCrud.getUserData(user).subscribe(user => {
+          this.userCrud.mergeGithubData(user.toJSON()).subscribe(user => {
             this.userCrud.updateUser(user.uid, user)
           })
           this.$uid = of(user.uid)
@@ -51,7 +51,7 @@ export class AuthService {
     return await this.auth.signInWithPopup(new auth.GithubAuthProvider()).then(cred => {
       localStorage.setItem('uid', cred.user.uid)
       this.$uid = of(cred.user.uid)
-      this.userCrud.getUserData(cred.user).subscribe(user => {
+      this.userCrud.mergeGithubData(cred.user.toJSON()).subscribe(user => {
         this.userCrud.updateUser(cred.user.uid, user)
       })
       this.dialog.close()

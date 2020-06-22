@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
+import * as $ from 'rxjs/operators';
+import * as _ from 'ramda';
+import { ChannelCrudService } from '../../channels/channel-crud.service';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +20,11 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private db: AngularFirestore,
+    public channelCrud: ChannelCrudService,
   ) { }
 
   ngOnInit(): void {
-    this.$channels = this.db.collection('channels').valueChanges({idField: 'id'})
+    this.$channels = this.channelCrud.fetchAll()
   }
 
 }

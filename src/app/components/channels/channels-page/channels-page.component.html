@@ -11,8 +11,8 @@
           <button
             mat-raised-button
             color="primary"
-            [routerLink]="['/', 'channels', 'create']">
-            <ion-icon name="plus-circle-outline"></ion-icon>
+            (click)="createChannelDialog.open()">
+            <ion-icon name="add-circle-outline"></ion-icon>
             Suggest New Channel
           </button>
         </div>
@@ -37,9 +37,27 @@
           <mat-card-subtitle>
             {{channel.description}}
           </mat-card-subtitle>
-          <mat-card-actions>
-            <button mat-raised-button>Follow</button>
-          </mat-card-actions>
+          <div *ngIf="auth.$user | async as user">
+            <button
+              *ngIf="!channelCrud.isFollowing(user.uid, channel); else leaveButton"
+              (click)="channelCrud.follow(user.uid, channel.id)"
+              mat-raised-button
+              color="primary">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              Join
+            </button>
+
+            <ng-template #leaveButton>
+              <button
+                mat-raised-button
+                (click)="channelCrud.unfollow(user.uid, channel.id)"
+                color="warn">
+                <ion-icon name="close-circle-outline"></ion-icon>
+                Leave
+              </button>
+            </ng-template>
+          </div>
+
         </div>
       </mat-card>
     </div>
