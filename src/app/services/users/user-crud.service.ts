@@ -2,10 +2,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'firebase';
 
 import * as $ from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import * as _ from 'ramda'
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +67,58 @@ export class UserCrudService {
         }
       })
     )
+  }
+
+  follow(follower: string, followed: string) {
+    this.db.doc(`users/${followed}`).get().subscribe(doc => {
+      const followedData = doc.data()
+
+      const followers = followedData.followers || []
+
+      this.db.doc(`users/${followed}`).update({
+        followers: _.uniq(_.append(follower, followers))
+      })
+
+      this.db.doc(`users/${follower}`).get().subscribe(userDoc => {
+        const user = userDoc.data()
+
+        const usersFolowing = user.usersFollowing || []
+
+        this.db.doc(`users/${follower}`).update({
+          usersFollowing: _.uniq(_.append({
+            user: followed,
+            createdAt: new Date().getTime()
+          }, usersFolowing))
+        })
+      })
+    })
+  }
+
+  unfollow(follower: string, followed: string) {
+    this.db.doc(`users/${followed}`).get().subscribe(doc => {
+      const channel = doc.data()
+
+      const followers = channel.followers || []
+
+      this.db.doc(`users/${followed}`).update({
+        followers: _.uniq(_.difference([followed], followers))
+      })
+
+      this.db.doc(`users/${followed}`).get().subscribe(userDoc => {
+        const user = userDoc.data()
+
+        const usersFolowing = user.usersFollowing || []
+        const found = _.find(_.propEq('user', followed), usersFolowing)
+
+        this.db.doc(`users/${followed}`).update({
+          usersFollowing: _.difference([found], usersFolowing)
+        })
+      })
+    })
+  }
+
+  isFollowing(follower: string, user: any): boolean {
+    const followers = user.followers || []
+    return followers.indexOf(follower) >= 0
   }
 }

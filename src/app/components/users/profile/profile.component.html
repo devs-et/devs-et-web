@@ -27,13 +27,34 @@
         </div>
 
         <div class="hero-bottom">
-          <button
-            *ngIf="(auth.$uid | async) !== user.uid"
-            mat-raised-button
-            color="primary">
-            <ion-icon name="checkmark-circle-outline"></ion-icon>
-            Follow
-          </button>
+
+          <ng-container
+            *ngIf="$user | async as profileUser">
+            <ng-container
+              *ngIf="auth.$user | async as user">
+              <ng-container
+                *ngIf="user.uid !== profileUser.uid">
+                <button
+                  *ngIf="!userCrud.isFollowing(user.uid, profileUser); else leaveChannel"
+                  (click)="userCrud.follow(user.uid, profileUser.uid)"
+                  mat-raised-button
+                  color="primary">
+                  <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  Follow
+                </button>
+
+                <ng-template #leaveChannel>
+                  <button
+                    mat-raised-button
+                    color="warn"
+                    (click)="userCrud.unfollow(user.uid, profileUser.uid)">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                    Unfollow
+                  </button>
+                </ng-template>
+              </ng-container>
+            </ng-container>
+          </ng-container>
 
           <a
             href="https://github.com/settings/profile"
