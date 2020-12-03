@@ -55,34 +55,44 @@
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css",
               "src/styles.scss",
               {
-                "input": "node_modules/@ionic/angular/css/normalize.css"
+                "input": "node_modules/@ionic/angular/css/normalize.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/structure.css"
+                "input": "node_modules/@ionic/angular/css/structure.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/typography.css"
+                "input": "node_modules/@ionic/angular/css/typography.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/core.css"
+                "input": "node_modules/@ionic/angular/css/core.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/padding.css"
+                "input": "node_modules/@ionic/angular/css/padding.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/float-elements.css"
+                "input": "node_modules/@ionic/angular/css/float-elements.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/text-alignment.css"
+                "input": "node_modules/@ionic/angular/css/text-alignment.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/text-transformation.css"
+                "input": "node_modules/@ionic/angular/css/text-transformation.css",
+                "inject": true
               },
               {
-                "input": "node_modules/@ionic/angular/css/flex-utils.css"
+                "input": "node_modules/@ionic/angular/css/flex-utils.css",
+                "inject": true
               },
               {
-                "input": "src/theme/variables.css"
+                "input": "src/theme/variables.css",
+                "inject": true
               }
             ],
             "scripts": [
@@ -106,7 +116,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
